@@ -13,6 +13,8 @@
 import fs from 'fs';
 import JSZip from 'jszip';
 import { topLevelChildren, innerXml, firstElement, allElements, textOf, attrOf } from '../src/xml-util.js';
+import { topLevelChildren, innerXml, firstElement, allElements, textOf, attrOf } from '../src/xml-util.js';
+import { REFERENCE_TYPES, DELIMITERS, verifyAgainstTemplate } from './reference-types.mjs';   // ← 追加
 
 /**
  * 段落直下の run を取り出す。
@@ -122,6 +124,12 @@ const otherNumIds = [...new Set(
     .filter(p => /<w:numPr>/.test(p.pPr))
     .map(p => Number(attrOf(firstElement(p.pPr, 'w:numId') ?? '', 'w:val'))),
 )];
+
+/* 参考文献の書式定義がテンプレ側に今も存在するかを検査する。
+ * reference-types.mjs はテンプレ「文　献」節の転記なので、
+ * 学会が同節を改訂すると黙って古くなる。ここで気づけるようにしておく。
+ * 変換自体は続行できるため throw せず警告に留める。 */
+const refFormatCheck = verifyAgainstTemplate(paras.map(p => p.text).join('\n'));
 
 /** 見出しは番号 run と文字 run で rPr が割れている（テンプレの指定漏れ）。
  *  ＭＳゴシック指定を持つ run を正とする。 */
@@ -284,6 +292,12 @@ const manifest = {
     templateExampleCount: refParas.length,
     bulletNumIds: otherNumIds,
   },
+  references: {                                        
+    delimiters: DELIMITERS,
+    types: REFERENCE_TYPES,
+    verifiedAgainstTemplate: refFormatCheck.ok,
+    note: '書式はテンプレ「文　献」節の転記。全角/半角の切替は delimiters の period / comma を書き換える',
+  },
   limits: {
     bodyChars: 12000, englishAbstractWords: 200,
     japaneseAbstractChars: 400, keywords: 5, pages: 6,
@@ -298,6 +312,13 @@ console.log(`   セクション1: body[0..${sec1EndIndex}] (${sec1Children.lengt
 console.log(`   セクション2: ${sec2Children.length}要素 / 段落${paras.length}`);
 console.log(`   本文ハンコの母集団: ${bodyParas.length}段落`);
 console.log(`   参考文献 numId: ${refNumId} (テンプレ例示 ${refParas.length}件)`);
+if (refFormatCheck.ok) {
+  console.log(`   参考文献の書式定義: 全${REFERENCE_TYPES.length}種をテンプレ側で確認 ✅`);
+} else {
+  console.log(`   ⚠️ 参考文献の書式定義: テンプレに見つからない型があります`);
+  for (const m of refFormatCheck.missing) console.log(`      - ${m}`);
+  console.log(`      → テンプレが改訂された可能性があります。tools/reference-types.mjs を確認してください`);
+}
 console.log(`   所属テキストボックス: ${affiliation ? `検出（txbx ${affiliation.txbxCount}箇所）` : '未検出'}`);
 console.log(`   片段: ${manifest.geometry.singleWidthTwips} twips / 段抜き: ${manifest.geometry.spanWidthTwips} twips`);
 for (const [k, v] of Object.entries(stamps)) {
