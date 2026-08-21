@@ -47,6 +47,8 @@ for (const [script, out] of [
 
 /* ---------- 実行 ---------- */
 const suites = [
+  // ファイルを読まないもの（最初に走らせて速く落とす）
+  { file: 'reference-types_test.mjs', cwd: root },
   // テンプレ素材を読むもの（カレントを .testwork にして走らせる）
   { file: 'checker_test.mjs', cwd: work },
   { file: 'heading-detect_test.mjs', cwd: work },
