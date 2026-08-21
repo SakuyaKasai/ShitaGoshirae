@@ -1,0 +1,257 @@
+{
+ "$schema": "jes-formatter/manifest@1",
+ "generatedFrom": "template.docx",
+ "generatedAt": "2026-08-16",
+ "document": {
+  "rootOpen": "<w:document xmlns:wpc=\"http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas\" xmlns:cx=\"http://schemas.microsoft.com/office/drawing/2014/chartex\" xmlns:cx1=\"http://schemas.microsoft.com/office/drawing/2015/9/8/chartex\" xmlns:cx2=\"http://schemas.microsoft.com/office/drawing/2015/10/21/chartex\" xmlns:cx3=\"http://schemas.microsoft.com/office/drawing/2016/5/9/chartex\" xmlns:cx4=\"http://schemas.microsoft.com/office/drawing/2016/5/10/chartex\" xmlns:cx5=\"http://schemas.microsoft.com/office/drawing/2016/5/11/chartex\" xmlns:cx6=\"http://schemas.microsoft.com/office/drawing/2016/5/12/chartex\" xmlns:cx7=\"http://schemas.microsoft.com/office/drawing/2016/5/13/chartex\" xmlns:cx8=\"http://schemas.microsoft.com/office/drawing/2016/5/14/chartex\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:aink=\"http://schemas.microsoft.com/office/drawing/2016/ink\" xmlns:am3d=\"http://schemas.microsoft.com/office/drawing/2017/model3d\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:wp14=\"http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" xmlns:wpg=\"http://schemas.microsoft.com/office/word/2010/wordprocessingGroup\" xmlns:wpi=\"http://schemas.microsoft.com/office/word/2010/wordprocessingInk\" xmlns:wne=\"http://schemas.microsoft.com/office/word/2006/wordml\" xmlns:wps=\"http://schemas.microsoft.com/office/word/2010/wordprocessingShape\" mc:Ignorable=\"w14 w15 w16se w16cid wp14\">",
+  "afterBody": "</w:document>"
+ },
+ "sections": {
+  "section1": {
+   "endIndex": 14,
+   "sectPr": "<w:sectPr w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidSect=\"0020476A\"><w:footerReference w:type=\"default\" r:id=\"rId8\"/><w:pgSz w:w=\"11906\" w:h=\"16838\" w:code=\"9\"/><w:pgMar w:top=\"1418\" w:right=\"1021\" w:bottom=\"1701\" w:left=\"1021\" w:header=\"851\" w:footer=\"680\" w:gutter=\"0\"/><w:cols w:space=\"425\"/><w:docGrid w:type=\"linesAndChars\" w:linePitch=\"291\" w:charSpace=\"-792\"/></w:sectPr>",
+   "slots": [
+    {
+     "index": 0,
+     "field": "englishHead",
+     "keep": "rebuild",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"4820\"/></w:tabs><w:ind w:left=\"4815\" w:hanging=\"4815\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:szCs w:val=\"21\"/></w:rPr></w:pPr>",
+     "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"18\"/><w:szCs w:val=\"18\"/></w:rPr>",
+     "raw": null,
+     "sample": "■技術報告■\t\t<Technical report> English Title"
+    },
+    {
+     "index": 1,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"15DA9F7F\" w14:textId=\"77777777\" w:rsidR=\"00FA3CBD\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00FA3CBD\" w:rsidP=\"00186034\"><w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 2,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"7F25770B\" w14:textId=\"77777777\" w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00186034\" w:rsidP=\"00186034\"><w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 3,
+     "field": "japaneseTitle",
+     "keep": "rebuild",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:snapToGrid w:val=\"0\"/><w:spacing w:line=\"360\" w:lineRule=\"auto\"/><w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"28\"/></w:rPr></w:pPr>",
+     "rPr": "<w:rPr><w:rFonts w:ascii=\"メイリオ\" w:eastAsia=\"メイリオ\" w:hAnsi=\"メイリオ\" w:hint=\"eastAsia\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"28\"/></w:rPr>",
+     "raw": null,
+     "sample": "タイトル１"
+    },
+    {
+     "index": 4,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"5F1A1842\" w14:textId=\"77777777\" w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00186034\" w:rsidP=\"00186034\"><w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 5,
+     "field": "japaneseAuthors",
+     "keep": "rebuild",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:wordWrap w:val=\"0\"/><w:jc w:val=\"right\"/><w:rPr><w:rFonts w:ascii=\"メイリオ\" w:eastAsia=\"メイリオ\" w:hAnsi=\"メイリオ\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"22\"/><w:vertAlign w:val=\"superscript\"/></w:rPr></w:pPr>",
+     "rPr": "<w:rPr><w:rFonts w:ascii=\"メイリオ\" w:eastAsia=\"メイリオ\" w:hAnsi=\"メイリオ\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"22\"/></w:rPr>",
+     "raw": null,
+     "sample": "人間工学　花子２，赤坂　太郎３"
+    },
+    {
+     "index": 6,
+     "field": "englishAbstract",
+     "keep": "rebuild",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:snapToGrid w:val=\"0\"/><w:spacing w:line=\"240\" w:lineRule=\"exact\"/><w:ind w:leftChars=\"825\" w:left=\"1701\" w:firstLineChars=\"100\" w:firstLine=\"196\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr></w:pPr>",
+     "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr>",
+     "raw": null,
+     "sample": "For all submissions, the English abstrac"
+    },
+    {
+     "index": 7,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:snapToGrid w:val=\"0\"/><w:spacing w:line=\"240\" w:lineRule=\"exact\"/><w:ind w:leftChars=\"825\" w:left=\"1701\"/><w:jc w:val=\"left\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"18\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"37D1E08E\" w14:textId=\"77777777\" w:rsidR=\"009A208C\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"009A208C\" w:rsidP=\"00F028CA\"><w:pPr><w:snapToGrid w:val=\"0\"/><w:spacing w:line=\"240\" w:lineRule=\"exact\"/><w:ind w:leftChars=\"825\" w:left=\"1701\"/><w:jc w:val=\"left\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"18\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 8,
+     "field": "japaneseAbstract",
+     "keep": "rebuild",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:snapToGrid w:val=\"0\"/><w:spacing w:line=\"240\" w:lineRule=\"exact\"/><w:ind w:leftChars=\"825\" w:left=\"1701\"/><w:jc w:val=\"left\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"18\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr>",
+     "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"18\"/><w:szCs w:val=\"16\"/></w:rPr>",
+     "raw": null,
+     "sample": "和文抄録はここに記入してください．要点（目的・方法・結果・考察）を簡潔に400字"
+    },
+    {
+     "index": 9,
+     "field": null,
+     "keep": "raw",
+     "tag": "w:bookmarkEnd",
+     "pPr": null,
+     "rPr": null,
+     "raw": "<w:bookmarkEnd w:id=\"0\"/>",
+     "sample": ""
+    },
+    {
+     "index": 10,
+     "field": "keywords",
+     "keep": "rebuild",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:snapToGrid w:val=\"0\"/><w:spacing w:line=\"240\" w:lineRule=\"exact\"/><w:ind w:leftChars=\"1169\" w:left=\"2410\"/><w:jc w:val=\"left\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr>",
+     "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"18\"/><w:szCs w:val=\"16\"/></w:rPr>",
+     "raw": null,
+     "sample": "（キーワード：　○○○○○，○○○○○，○○○○○，○○○○○，○○○○○）"
+    },
+    {
+     "index": 11,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"6D79D39B\" w14:textId=\"77777777\" w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00186034\" w:rsidP=\"00186034\"><w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 12,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"75B7CA21\" w14:textId=\"77777777\" w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00186034\" w:rsidP=\"00186034\"><w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 13,
+     "field": null,
+     "keep": "raw",
+     "note": "レイアウト調整用の空段落",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"26D258B0\" w14:textId=\"77777777\" w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00186034\" w:rsidP=\"00186034\"><w:pPr><w:rPr><w:color w:val=\"000000\" w:themeColor=\"text1\"/></w:rPr></w:pPr></w:p>",
+     "sample": ""
+    },
+    {
+     "index": 14,
+     "field": null,
+     "keep": "raw",
+     "note": "セクション区切り",
+     "tag": "w:p",
+     "pPr": "<w:pPr><w:spacing w:afterLines=\"100\" w:after=\"291\"/><w:rPr><w:rFonts w:hAnsi=\"ＭＳ 明朝\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"22\"/></w:rPr><w:sectPr w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidSect=\"0020476A\"><w:footerReference w:type=\"default\" r:id=\"rId8\"/><w:pgSz w:w=\"11906\" w:h=\"16838\" w:code=\"9\"/><w:pgMar w:top=\"1418\" w:right=\"1021\" w:bottom=\"1701\" w:left=\"1021\" w:header=\"851\" w:footer=\"680\" w:gutter=\"0\"/><w:cols w:space=\"425\"/><w:docGrid w:type=\"linesAndChars\" w:linePitch=\"291\" w:charSpace=\"-792\"/></w:sectPr></w:pPr>",
+     "rPr": null,
+     "raw": "<w:p w14:paraId=\"6EA125C9\" w14:textId=\"77777777\" w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidRDefault=\"00186034\" w:rsidP=\"00951CAF\"><w:pPr><w:spacing w:afterLines=\"100\" w:after=\"291\"/><w:rPr><w:rFonts w:hAnsi=\"ＭＳ 明朝\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"22\"/></w:rPr><w:sectPr w:rsidR=\"00186034\" w:rsidRPr=\"00FB1063\" w:rsidSect=\"0020476A\"><w:footerReference w:type=\"default\" r:id=\"rId8\"/><w:pgSz w:w=\"11906\" w:h=\"16838\" w:code=\"9\"/><w:pgMar w:top=\"1418\" w:right=\"1021\" w:bottom=\"1701\" w:left=\"1021\" w:header=\"851\" w:footer=\"680\" w:gutter=\"0\"/><w:cols w:space=\"425\"/><w:docGrid w:type=\"linesAndChars\" w:linePitch=\"291\" w:charSpace=\"-792\"/></w:sectPr></w:pPr></w:p>",
+     "sample": ""
+    }
+   ]
+  },
+  "section2": {
+   "sectPr": "<w:sectPr w:rsidR=\"00A86476\" w:rsidRPr=\"00FB1063\" w:rsidSect=\"0020476A\"><w:type w:val=\"continuous\"/><w:pgSz w:w=\"11906\" w:h=\"16838\" w:code=\"9\"/><w:pgMar w:top=\"1701\" w:right=\"907\" w:bottom=\"1701\" w:left=\"907\" w:header=\"851\" w:footer=\"680\" w:gutter=\"0\"/><w:lnNumType w:countBy=\"1\"/><w:cols w:num=\"2\" w:space=\"824\"/><w:docGrid w:type=\"linesAndChars\" w:linePitch=\"291\" w:charSpace=\"-931\"/></w:sectPr>"
+  }
+ },
+ "geometry": {
+  "pageWidthTwips": 11906,
+  "pageHeightTwips": 16838,
+  "marginTwips": {
+   "top": 1701,
+   "right": 907,
+   "bottom": 1701,
+   "left": 907
+  },
+  "columns": {
+   "num": 2,
+   "spaceTwips": 824
+  },
+  "spanWidthTwips": 10092,
+  "singleWidthTwips": 4634,
+  "columnHeightTwips": 13436
+ },
+ "stamps": {
+  "heading1": {
+   "pPr": "<w:pPr><w:spacing w:afterLines=\"100\" w:after=\"291\"/><w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"22\"/></w:rPr></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\" w:hint=\"eastAsia\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"22\"/></w:rPr>",
+   "note": "11pt ＭＳゴシック太字。テンプレは番号runのascii未指定でCenturyになる不具合があるため統一版を採用"
+  },
+  "heading2": {
+   "pPr": "<w:pPr><w:spacing w:afterLines=\"100\" w:after=\"291\"/><w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"Times New Roman\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr>",
+   "note": "10pt 欧文TimesNewRoman/和文ＭＳゴシック太字。和欧混植が正しく効く形"
+  },
+  "heading3": {
+   "pPr": "<w:pPr><w:spacing w:afterLines=\"100\" w:after=\"291\"/><w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"Times New Roman\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr>",
+   "note": "3階層目はテンプレに実例がないため見出し2と同一のハンコを流用する"
+  },
+  "headingPlain": {
+   "pPr": "<w:pPr><w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"ＭＳ ゴシック\" w:eastAsia=\"ＭＳ ゴシック\" w:hAnsi=\"ＭＳ ゴシック\" w:hint=\"eastAsia\"/><w:b/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr>",
+   "note": "番号なし見出し（文献・謝辞・利益相反）。spacingを持たない"
+  },
+  "body": {
+   "pPr": "<w:pPr><w:ind w:firstLineChars=\"100\" w:firstLine=\"195\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr>",
+   "note": "10pt 欧文TimesNewRoman/和文はeastAsia未指定でdocDefaultsのＭＳ明朝を継承"
+  },
+  "reference": {
+   "pPr": "<w:pPr><w:numPr><w:ilvl w:val=\"0\"/><w:numId w:val=\"17\"/></w:numPr><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr>",
+   "numId": 17,
+   "note": "numPr による自動採番。\"1)\" の手打ちは不要でぶら下げインデントも定義済み"
+  },
+  "caption": {
+   "pPr": "<w:pPr><w:jc w:val=\"center\"/></w:pPr>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr>",
+   "note": "テンプレに図表キャプションの実例がないため、本文ハンコ＋中央揃えで代用する（handoff 参照）"
+  },
+  "empty": {
+   "pPr": "<w:pPr/>",
+   "rPr": "<w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/><w:szCs w:val=\"20\"/></w:rPr>",
+   "note": "空段落"
+  }
+ },
+ "affiliation": {
+  "runXml": "<w:r w:rsidRPr=\"00FB1063\"><w:rPr><w:noProof/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"20\"/></w:rPr><mc:AlternateContent><mc:Choice Requires=\"wpg\"><w:drawing><wp:anchor distT=\"0\" distB=\"0\" distL=\"114300\" distR=\"114300\" simplePos=\"0\" relativeHeight=\"251666432\" behindDoc=\"0\" locked=\"0\" layoutInCell=\"1\" allowOverlap=\"1\" wp14:anchorId=\"1FF029FE\" wp14:editId=\"76445869\"><wp:simplePos x=\"0\" y=\"0\"/><wp:positionH relativeFrom=\"column\"><wp:align>right</wp:align></wp:positionH><wp:positionV relativeFrom=\"paragraph\"><wp:posOffset>379730</wp:posOffset></wp:positionV><wp:extent cx=\"2847975\" cy=\"882650\"/><wp:effectExtent l=\"0\" t=\"0\" r=\"28575\" b=\"0\"/><wp:wrapSquare wrapText=\"bothSides\"/><wp:docPr id=\"3\" name=\"Group 13\"/><wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\"/></wp:cNvGraphicFramePr><a:graphic xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\"><a:graphicData uri=\"http://schemas.microsoft.com/office/word/2010/wordprocessingGroup\"><wpg:wgp><wpg:cNvGrpSpPr><a:grpSpLocks/></wpg:cNvGrpSpPr><wpg:grpSpPr bwMode=\"auto\"><a:xfrm><a:off x=\"0\" y=\"0\"/><a:ext cx=\"2847975\" cy=\"882650\"/><a:chOff x=\"1155\" y=\"13020\"/><a:chExt cx=\"4485\" cy=\"1995\"/></a:xfrm></wpg:grpSpPr><wps:wsp><wps:cNvPr id=\"4\" name=\"AutoShape 11\"/><wps:cNvCnPr><a:cxnSpLocks noChangeShapeType=\"1\"/></wps:cNvCnPr><wps:spPr bwMode=\"auto\"><a:xfrm><a:off x=\"1155\" y=\"13020\"/><a:ext cx=\"4485\" cy=\"0\"/></a:xfrm><a:prstGeom prst=\"straightConnector1\"><a:avLst/></a:prstGeom><a:noFill/><a:ln w=\"9525\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:round/><a:headEnd/><a:tailEnd/></a:ln><a:extLst><a:ext uri=\"{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}\"><a14:hiddenFill xmlns:a14=\"http://schemas.microsoft.com/office/drawing/2010/main\"><a:noFill/></a14:hiddenFill></a:ext></a:extLst></wps:spPr><wps:bodyPr/></wps:wsp><wps:wsp><wps:cNvPr id=\"5\" name=\"Text Box 12\"/><wps:cNvSpPr txBox=\"1\"><a:spLocks noChangeArrowheads=\"1\"/></wps:cNvSpPr><wps:spPr bwMode=\"auto\"><a:xfrm><a:off x=\"1260\" y=\"13173\"/><a:ext cx=\"4380\" cy=\"1842\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:noFill/><a:ln><a:noFill/></a:ln><a:extLst><a:ext uri=\"{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}\"><a14:hiddenFill xmlns:a14=\"http://schemas.microsoft.com/office/drawing/2010/main\"><a:solidFill><a:srgbClr val=\"FFFFFF\"/></a:solidFill></a14:hiddenFill></a:ext><a:ext uri=\"{91240B29-F687-4F45-9708-019B960494DF}\"><a14:hiddenLine xmlns:a14=\"http://schemas.microsoft.com/office/drawing/2010/main\" w=\"9525\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:miter lim=\"800000\"/><a:headEnd/><a:tailEnd/></a14:hiddenLine></a:ext></a:extLst></wps:spPr><wps:txbx><w:txbxContent><w:p w14:paraId=\"109BCD9B\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidR=\"00761183\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>1</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>受付：</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>****</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>年</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>*</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>月</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>日　受理：</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>****</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>年</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>月</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>日</w:t></w:r></w:p><w:p w14:paraId=\"442B71F3\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>*</w:t></w:r><w:r w:rsidR=\"00761183\" w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>*</w:t></w:r><w:r w:rsidR=\"00761183\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>2</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>人間工学大学人間工学学部</w:t></w:r></w:p><w:p w14:paraId=\"51BF4B6C\" w14:textId=\"284F5BC2\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"008E619D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>School of Ergonomics</w:t></w:r><w:r w:rsidR=\"008E619D\" w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t xml:space=\"preserve\">, </w:t></w:r><w:proofErr w:type=\"spellStart\"/><w:r w:rsidR=\"008E619D\" w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>Ningenkougaku</w:t></w:r><w:proofErr w:type=\"spellEnd\"/><w:r w:rsidR=\"008E619D\" w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t xml:space=\"preserve\"> University</w:t></w:r></w:p><w:p w14:paraId=\"32BD4766\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"005C4D94\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidR=\"00761183\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>3</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>株式会社アーゴノミクス</w:t></w:r></w:p><w:p w14:paraId=\"2268F3BE\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>E</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t xml:space=\"preserve\">rgonomics </w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>Co. Ltd.</w:t></w:r></w:p></w:txbxContent></wps:txbx><wps:bodyPr rot=\"0\" vert=\"horz\" wrap=\"square\" lIns=\"74295\" tIns=\"8890\" rIns=\"74295\" bIns=\"8890\" anchor=\"t\" anchorCtr=\"0\" upright=\"1\"><a:noAutofit/></wps:bodyPr></wps:wsp></wpg:wgp></a:graphicData></a:graphic><wp14:sizeRelH relativeFrom=\"page\"><wp14:pctWidth>0</wp14:pctWidth></wp14:sizeRelH><wp14:sizeRelV relativeFrom=\"page\"><wp14:pctHeight>0</wp14:pctHeight></wp14:sizeRelV></wp:anchor></w:drawing></mc:Choice><mc:Fallback><w:pict><v:group w14:anchorId=\"1FF029FE\" id=\"Group 13\" o:spid=\"_x0000_s1026\" style=\"position:absolute;left:0;text-align:left;margin-left:173.05pt;margin-top:29.9pt;width:224.25pt;height:69.5pt;z-index:251666432;mso-position-horizontal:right\" coordorigin=\"1155,13020\" coordsize=\"4485,1995\" o:gfxdata=\"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&#xA;AAAABAcAAAAA&#xA;\"><v:shapetype id=\"_x0000_t32\" coordsize=\"21600,21600\" o:spt=\"32\" o:oned=\"t\" path=\"m,l21600,21600e\" filled=\"f\"><v:path arrowok=\"t\" fillok=\"f\" o:connecttype=\"none\"/><o:lock v:ext=\"edit\" shapetype=\"t\"/></v:shapetype><v:shape id=\"AutoShape 11\" o:spid=\"_x0000_s1027\" type=\"#_x0000_t32\" style=\"position:absolute;left:1155;top:13020;width:4485;height:0;visibility:visible;mso-wrap-style:square\" o:connectortype=\"straight\" o:gfxdata=\"UEsDBBQABgAIAAAAIQDb4fbL7gAAAIUBAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbHyQz07DMAyH&#xA;70i8Q+QralM4IITa7kDhCAiNB7ASt43WOlEcyvb2pNu4IODoPz9/n1xv9vOkForiPDdwXVagiI23&#xA;jocG3rdPxR0oScgWJ8/UwIEENu3lRb09BBKV0ywNjCmFe63FjDSjlD4Q50nv44wpl3HQAc0OB9I3&#xA;VXWrjedEnIq03oC27qjHjympx31un0wiTQLq4bS4shrAECZnMGVTvbD9QSnOhDInjzsyuiBXWQP0&#xA;r4R18jfgnHvJr4nOknrFmJ5xzhraRtHWf3Kkpfz/yGo5S+H73hkquyhdjr3R8m2lj09svwAAAP//&#xA;AwBQSwMEFAAGAAgAAAAhAFr0LFu/AAAAFQEAAAsAAABfcmVscy8ucmVsc2zPwWrDMAwG4Ptg72B0&#xA;X5TuUMaI01uh19I+gLGVxCy2jGSy9e1nemrHjpL4P0nD4SetZiPRyNnCruvBUPYcYp4tXC/Htw8w&#xA;Wl0ObuVMFm6kcBhfX4Yzra62kC6xqGlKVgtLreUTUf1CyWnHhXKbTCzJ1VbKjMX5LzcTvvf9HuXR&#xA;gPHJNKdgQU5hB+ZyK23zHztFL6w81c5zQp6m6P9TMfB3PtPWFCczVQtB9N4U2rp2HOA44NMz4y8A&#xA;AAD//wMAUEsDBBQABgAIAAAAIQC2sjScxAAAANoAAAAPAAAAZHJzL2Rvd25yZXYueG1sRI9PawIx&#xA;FMTvhX6H8AQvRbNKFdkaZVsQasGDf3p/3bxugpuX7Sbq+u1NQfA4zMxvmPmyc7U4UxusZwWjYQaC&#xA;uPTacqXgsF8NZiBCRNZYeyYFVwqwXDw/zTHX/sJbOu9iJRKEQ44KTIxNLmUoDTkMQ98QJ+/Xtw5j&#xA;km0ldYuXBHe1HGfZVDq0nBYMNvRhqDzuTk7BZj16L36MXX9t/+xmsirqU/XyrVS/1xVvICJ18RG+&#xA;tz+1glf4v5JugFzcAAAA//8DAFBLAQItABQABgAIAAAAIQDb4fbL7gAAAIUBAAATAAAAAAAAAAAA&#xA;AAAAAAAAAABbQ29udGVudF9UeXBlc10ueG1sUEsBAi0AFAAGAAgAAAAhAFr0LFu/AAAAFQEAAAsA&#xA;AAAAAAAAAAAAAAAAHwEAAF9yZWxzLy5yZWxzUEsBAi0AFAAGAAgAAAAhALayNJzEAAAA2gAAAA8A&#xA;AAAAAAAAAAAAAAAABwIAAGRycy9kb3ducmV2LnhtbFBLBQYAAAAAAwADALcAAAD4AgAAAAA=&#xA;\"/><v:shapetype id=\"_x0000_t202\" coordsize=\"21600,21600\" o:spt=\"202\" path=\"m,l,21600r21600,l21600,xe\"><v:stroke joinstyle=\"miter\"/><v:path gradientshapeok=\"t\" o:connecttype=\"rect\"/></v:shapetype><v:shape id=\"Text Box 12\" o:spid=\"_x0000_s1028\" type=\"#_x0000_t202\" style=\"position:absolute;left:1260;top:13173;width:4380;height:1842;visibility:visible;mso-wrap-style:square;v-text-anchor:top\" o:gfxdata=\"UEsDBBQABgAIAAAAIQDb4fbL7gAAAIUBAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbHyQz07DMAyH&#xA;70i8Q+QralM4IITa7kDhCAiNB7ASt43WOlEcyvb2pNu4IODoPz9/n1xv9vOkForiPDdwXVagiI23&#xA;jocG3rdPxR0oScgWJ8/UwIEENu3lRb09BBKV0ywNjCmFe63FjDSjlD4Q50nv44wpl3HQAc0OB9I3&#xA;VXWrjedEnIq03oC27qjHjympx31un0wiTQLq4bS4shrAECZnMGVTvbD9QSnOhDInjzsyuiBXWQP0&#xA;r4R18jfgnHvJr4nOknrFmJ5xzhraRtHWf3Kkpfz/yGo5S+H73hkquyhdjr3R8m2lj09svwAAAP//&#xA;AwBQSwMEFAAGAAgAAAAhAFr0LFu/AAAAFQEAAAsAAABfcmVscy8ucmVsc2zPwWrDMAwG4Ptg72B0&#xA;X5TuUMaI01uh19I+gLGVxCy2jGSy9e1nemrHjpL4P0nD4SetZiPRyNnCruvBUPYcYp4tXC/Htw8w&#xA;Wl0ObuVMFm6kcBhfX4Yzra62kC6xqGlKVgtLreUTUf1CyWnHhXKbTCzJ1VbKjMX5LzcTvvf9HuXR&#xA;gPHJNKdgQU5hB+ZyK23zHztFL6w81c5zQp6m6P9TMfB3PtPWFCczVQtB9N4U2rp2HOA44NMz4y8A&#xA;AAD//wMAUEsDBBQABgAIAAAAIQAbXw7ywwAAANoAAAAPAAAAZHJzL2Rvd25yZXYueG1sRI9Pa8JA&#xA;FMTvBb/D8gRvdaNgKNFVoqCWXvyLeHxmn0kw+zZkt5r66buFgsdhZn7DTGatqcSdGldaVjDoRyCI&#xA;M6tLzhUcD8v3DxDOI2usLJOCH3Iwm3beJpho++Ad3fc+FwHCLkEFhfd1IqXLCjLo+rYmDt7VNgZ9&#xA;kE0udYOPADeVHEZRLA2WHBYKrGlRUHbbfxsFz9Kl6+1m7i/z0XkVbb9id0pjpXrdNh2D8NT6V/i/&#xA;/akVjODvSrgBcvoLAAD//wMAUEsBAi0AFAAGAAgAAAAhANvh9svuAAAAhQEAABMAAAAAAAAAAAAA&#xA;AAAAAAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECLQAUAAYACAAAACEAWvQsW78AAAAVAQAACwAA&#xA;AAAAAAAAAAAAAAAfAQAAX3JlbHMvLnJlbHNQSwECLQAUAAYACAAAACEAG18O8sMAAADaAAAADwAA&#xA;AAAAAAAAAAAAAAAHAgAAZHJzL2Rvd25yZXYueG1sUEsFBgAAAAADAAMAtwAAAPcCAAAAAA==&#xA;\" filled=\"f\" stroked=\"f\"><v:textbox inset=\"5.85pt,.7pt,5.85pt,.7pt\"><w:txbxContent><w:p w14:paraId=\"109BCD9B\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidR=\"00761183\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>1</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>受付：</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>****</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>年</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>*</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>月</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>日　受理：</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>****</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>年</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>月</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>日</w:t></w:r></w:p><w:p w14:paraId=\"442B71F3\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>*</w:t></w:r><w:r w:rsidR=\"00761183\" w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>*</w:t></w:r><w:r w:rsidR=\"00761183\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>2</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>人間工学大学人間工学学部</w:t></w:r></w:p><w:p w14:paraId=\"51BF4B6C\" w14:textId=\"284F5BC2\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"008E619D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>School of Ergonomics</w:t></w:r><w:r w:rsidR=\"008E619D\" w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t xml:space=\"preserve\">, </w:t></w:r><w:proofErr w:type=\"spellStart\"/><w:r w:rsidR=\"008E619D\" w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>Ningenkougaku</w:t></w:r><w:proofErr w:type=\"spellEnd\"/><w:r w:rsidR=\"008E619D\" w:rsidRPr=\"00FB1063\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:color w:val=\"000000\" w:themeColor=\"text1\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t xml:space=\"preserve\"> University</w:t></w:r></w:p><w:p w14:paraId=\"32BD4766\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"005C4D94\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:color w:val=\"FFFFFF\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>**</w:t></w:r><w:r w:rsidR=\"00761183\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>3</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>株式会社アーゴノミクス</w:t></w:r></w:p><w:p w14:paraId=\"2268F3BE\" w14:textId=\"77777777\" w:rsidR=\"00E91B7D\" w:rsidRDefault=\"00E91B7D\" w:rsidP=\"00E91B7D\"><w:pPr><w:tabs><w:tab w:val=\"left\" w:pos=\"284\"/></w:tabs><w:snapToGrid w:val=\"0\"/><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:tab/></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>E</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\" w:hint=\"eastAsia\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t xml:space=\"preserve\">rgonomics </w:t></w:r><w:r w:rsidRPr=\"00E91B7D\"><w:rPr><w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"ＭＳ Ｐ明朝\" w:hAnsi=\"Times New Roman\"/><w:sz w:val=\"16\"/><w:szCs w:val=\"16\"/></w:rPr><w:t>Co. Ltd.</w:t></w:r></w:p></w:txbxContent></v:textbox></v:shape><w10:wrap type=\"square\"/></v:group></w:pict></mc:Fallback></mc:AlternateContent></w:r>",
+  "txbxCount": 2,
+  "note": "mc:Choice と mc:Fallback に同一テキストが重複。片方だけ書き換えると不整合になる"
+ },
+ "numbering": {
+  "referenceNumId": 17,
+  "templateExampleCount": 12,
+  "bulletNumIds": [
+   14
+  ]
+ },
+ "limits": {
+  "bodyChars": 12000,
+  "englishAbstractWords": 200,
+  "japaneseAbstractChars": 400,
+  "keywords": 5,
+  "pages": 6
+ }
+}
