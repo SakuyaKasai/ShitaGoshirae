@@ -1,0 +1,5 @@
+- name: fixture が揃っているか
+  run: |
+    for f in fixture-source.docx fixture-full.docx; do
+      if [ ! -f "$f" ]; then
+        echo "::error title=fixture がありません::$f が無いため、これを使うテストがスキップされます"
