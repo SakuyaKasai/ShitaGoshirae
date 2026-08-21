@@ -7,7 +7,7 @@ name: build
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
     paths:
       - 'template.docx'
       - 'src/**'
@@ -17,7 +17,7 @@ on:
       - 'package-lock.json'
       - '.github/workflows/build.yml'
   pull_request:
-    branches: [main, dev]
+    branches: [main]
   workflow_dispatch:
 
 # 生成物をリポジトリへ書き戻すために必要
@@ -124,7 +124,7 @@ jobs:
       #      GITHUB_TOKEN によるコミットは新しいワークフローを起こさないため
       #      無限ループにはならないが、念のため [skip ci] も付けておく。
       - name: 生成物をコミット
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           if [ -z "$(git status --porcelain src/manifest.json index.html)" ]; then
             echo "変更なし。コミットしません"
