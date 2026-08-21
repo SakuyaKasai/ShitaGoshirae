@@ -13,8 +13,7 @@
 import fs from 'fs';
 import JSZip from 'jszip';
 import { topLevelChildren, innerXml, firstElement, allElements, textOf, attrOf } from '../src/xml-util.js';
-import { topLevelChildren, innerXml, firstElement, allElements, textOf, attrOf } from '../src/xml-util.js';
-import { REFERENCE_TYPES, DELIMITERS, verifyAgainstTemplate } from './reference-types.mjs';   // ← 追加
+import { REFERENCE_TYPES, DELIMITERS, verifyAgainstTemplate } from './reference-types.mjs';
 
 /**
  * 段落直下の run を取り出す。

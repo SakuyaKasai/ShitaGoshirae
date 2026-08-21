@@ -8,6 +8,7 @@
     "manifest": "node tools/build-manifest.mjs template.docx src/manifest.json",
     "build": "node tools/build-bundle.mjs",
     "fixture": "python3 tools/make-fixture.py fixture-source.docx",
+    "fixture:full": "python3 tools/make-fixture-full.py fixture-full.docx",
     "test": "node test/run-all.mjs"
   },
   "dependencies": { "jszip": "^3.10.1" },
