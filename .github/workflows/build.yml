@@ -39,11 +39,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: npm
 
       - name: 依存関係
         # package-lock.json があれば ci、無ければ install
-        run: npm ci || npm install
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
       # ---- 実 Chromium が要るのは test/ui_test.mjs だけ ----
       - name: Chromium のキャッシュ
@@ -126,13 +126,13 @@ jobs:
       - name: 生成物をコミット
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
-          if [ -z "$(git status --porcelain src/manifest.json index.html)" ]; then
+          if [ -z "$(git status --porcelain src/manifest.json index.html package-lock.json)" ]; then
             echo "変更なし。コミットしません"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/manifest.json index.html
+          git add src/manifest.json index.html package-lock.json
           git commit -m "build: manifest.json と index.html を再生成 [skip ci]"
           git push
 
