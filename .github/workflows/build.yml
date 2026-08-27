@@ -3,6 +3,11 @@ name: build
 # テンプレやソースが変わったら manifest.json と index.html を作り直す。
 # 手元に Node が無くても、GitHub 上でファイルを差し替えて push すれば完結する。
 #
+# ブランチの役割:
+#   main … 本番。ここでだけビルドし、生成物を書き戻す
+#   dev  … 差分確認用。push しても何も走らない
+#          dev → main の PR を立てたときだけ、検証のために走る（書き戻しはしない）
+#
 # 「Actions」タブ →「build」→「Run workflow」から手動実行もできる。
 
 on:
@@ -36,16 +41,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # cache: npm は package-lock.json が無いとステップごと落ちるため付けない。
+      # 初回ビルドで lock ファイルが書き戻されたあとなら付けてよい。
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: 依存関係
-        # package-lock.json があれば ci、無ければ install
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
-      # ---- 実 Chromium が要るのは test/ui_test.mjs だけ ----
+      # fixture-source.docx / fixture-full.docx は run-all.mjs が自前で作る。
+      # ただし python-docx と Pillow が要る。入っていないと run-all が catch して
+      # 「飛ばします」と表示したまま緑になってしまうので、ここで必ず入れておく。
+      - name: Python 依存
+        run: pip install --quiet python-docx Pillow
+
+      # 実 Chromium が要るのは test/ui_test.mjs だけ。
+      # ブラウザ限定の落とし穴（File API / atob / Blob）を踏むのはこのテストなので飛ばさない。
       - name: Chromium のキャッシュ
         id: pw-cache
         uses: actions/cache@v4
@@ -69,32 +82,8 @@ jobs:
             echo "::warning title=テンプレ側の確認が必要::$(grep '⚠️' manifest.log | head -1)"
           fi
 
-      # ---- 2. 検証用原稿 ----
-      #      2種類ある。両方揃っていないとテストが「静かに」減る:
-      #        fixture-source.docx … source-parse / compose が使う
-      #        fixture-full.docx   … ui_test が使う。run-all で optional 扱いのため
-      #                              無いとスキップされ、緑のまま通ってしまう。
-      #      ブラウザ限定の落とし穴（File API / atob / Blob）を踏むのはこのテストだけなので
-      #      CI で飛ばすと Actions を入れた意味が半減する。
-      - name: fixture
-        run: |
-          [ -f fixture-source.docx ] || npm run fixture
-          [ -f fixture-full.docx ]   || npm run fixture:full
-          ls -l fixture-*.docx
-
-      - name: fixture が揃っているか
-        run: |
-          missing=0
-          for f in fixture-source.docx fixture-full.docx; do
-            if [ ! -f "$f" ]; then
-              echo "::error title=fixture がありません::$f が無いため、これを使うテストがスキップされます"
-              missing=1
-            fi
-          done
-          exit $missing
-
-      # ---- 3. テスト ----
-      #      run-all は optional なスイートを黙って飛ばすため、
+      # ---- 2. テスト ----
+      #      run-all は fixture が無いスイートを黙って飛ばすため、
       #      「何件走ったか」ではなく「飛ばされたものが無いか」を見る。
       - name: テスト
         run: |
@@ -104,11 +93,11 @@ jobs:
             echo "::warning title=スキップされたテストがあります::$(grep -iE 'skip|スキップ|飛ば' test.log | head -3)"
           fi
 
-      # ---- 4. 配布物 index.html ----
+      # ---- 3. 配布物 index.html ----
       - name: index.html を生成
         run: npm run build
 
-      # ---- 5. 成果物として置いておく ----
+      # ---- 4. 成果物として置いておく ----
       #      Actions の実行結果ページからダウンロードできる。
       #      Node が無い環境でも、これを取って ConoHa へ置けば配布が済む。
       - name: 成果物をアップロード
@@ -120,9 +109,10 @@ jobs:
             src/manifest.json
           retention-days: 30
 
-      # ---- 6. 生成物をリポジトリへ書き戻す ----
+      # ---- 5. 生成物をリポジトリへ書き戻す ----
       #      GITHUB_TOKEN によるコミットは新しいワークフローを起こさないため
       #      無限ループにはならないが、念のため [skip ci] も付けておく。
+      #      dev で手動実行しても書き戻さないよう main に限定する。
       - name: 生成物をコミット
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
@@ -136,7 +126,7 @@ jobs:
           git commit -m "build: manifest.json と index.html を再生成 [skip ci]"
           git push
 
-      # ---- 7. 実行結果の要約 ----
+      # ---- 6. 実行結果の要約 ----
       - name: サマリ
         if: always()
         run: |
