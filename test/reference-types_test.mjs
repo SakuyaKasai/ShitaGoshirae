@@ -1,92 +1,28 @@
 /**
- * reference-types_test.mjs — 参考文献の書式定義（型と組み立てモデル）の検証
+ * reference-types_test.mjs — 参考文献の書式定義と整形処理の検証
  *
  *   node test/reference-types_test.mjs
  *
- * テンプレート「文　献」節の例示11本を、フィールドに分解 → 再組み立てして
- * 元に戻るかを確認する。全角化した以外は一字一句一致すること。
- *
- * 注: 下の format() は組み立てモデルの検証用プロトタイプである。
- *     ステップ2で src/reference-format.js を実装したら、この関数を消して
- *     import に差し替えること（アサーションはそのまま使える）。
+ * 【1】テンプレート「文　献」節の例示11本を、フィールドに分解 → 再組み立てして
+ *      元に戻るかを確認する。全角化した以外は一字一句一致すること。
+ * 【2】任意フィールドが空のとき、区切りが浮かないこと。
+ * 【3】R01 必須の未入力を、出力からは消して報告だけすること。
+ * 【4】R02 記号の重なりを、位置つきで報告すること。
+ * 【5】テンプレ側に書式定義の見出しが残っているかの検査。
+ * 【6】高信頼フィールドの抽出。著者名・論文名・誌名は切り分けないこと。
+ * 【7】種別の推定。手がかりが無ければ null を返すこと。
+ * 【8】モーダルの初期状態づくり（prepareGuide）。
  */
 import { REFERENCE_TYPES, DELIMITERS, verifyAgainstTemplate } from '../tools/reference-types.mjs';
+import {
+  formatReference, extractFields, guessType, prepareGuide, buildReference,
+} from '../src/reference-format.js';
 
 const TYPES = Object.fromEntries(REFERENCE_TYPES.map(t => [t.id, t]));
+const REFS = { delimiters: DELIMITERS, types: REFERENCE_TYPES };
 
-/**
- * 値の末尾の区切り記号を落とす。
- * 半角ピリオドは落とさない — "1st ed." "et al." "J." のように
- * 略記や頭文字の一部であることが多く、機械的には区別できないため。
- * （テンプレ例示も "1st ed., Ergonomics Press" と両方を並べている）
- */
-const trimTail = (v, isUrl) => isUrl ? v : v.replace(/[．，、。,;；\s\u3000]+$/, '');
-
-/** prefix を二重に付けない（DOI を URL ごと貼られた場合） */
-const applyPrefix = (prefix, v) => !prefix || v.startsWith(prefix) ? v : prefix + v;
-
-/** 半角の区切りと全角の区切りが隣り合っているか */
-const HALF_TAIL = /[.,;:]$/;
-
-/**
- * @returns {{ text, notices }}
- *   notices[] = { id, level, field, fieldLabel, at, length, excerpt, message, suggestion }
- *     at / length …… text 内の文字位置。UI はここをハイライトする
- */
-function format(type, values) {
-  const emitted = [];
-  const notices = [];
-
-  for (const f of type.fields) {
-    const raw = String(values[f.key] ?? '').trim();
-    if (!raw) {
-      // 空欄はフィールドごと消す。穴埋め記号は出さない。
-      if (f.required) {
-        notices.push({
-          id: 'R01', level: 'warn', field: f.key, fieldLabel: f.label,
-          message: `${f.label}が未入力です`,
-          suggestion: '規定ではこの型に必要な項目です。原著をご確認ください',
-        });
-      }
-      continue;
-    }
-    const isUrl = f.autofill === 'url' || f.autofill === 'doi';
-    const v = trimTail(raw, isUrl);
-    emitted.push({ f, text: applyPrefix(f.prefix ?? '', v) + (f.suffix ?? '') });
-  }
-  if (!emitted.length) return { text: '', notices };
-
-  let text = emitted[0].text;
-  for (let i = 1; i < emitted.length; i++) {
-    const key = emitted[i].f.lead ?? emitted[i - 1].f.follow;
-    const delim = DELIMITERS[key] ?? '';
-    checkCollision(notices, emitted[i - 1].f, text, delim, emitted[i].text);
-    text += delim + emitted[i].text;
-  }
-
-  const last = emitted[emitted.length - 1].f;
-  if (!last.suppressTerminal && type.terminal) {
-    const delim = DELIMITERS[type.terminal];
-    checkCollision(notices, last, text, delim, '');
-    text += delim;
-  }
-  return { text, notices };
-}
-
-/** 直前の出力が半角の記号で終わっていて、その後ろに全角の区切りが来る場合 */
-function checkCollision(notices, field, textSoFar, delim, nextText) {
-  if (!delim || !HALF_TAIL.test(textSoFar)) return;
-  const tail = textSoFar.slice(-1);
-  const at = textSoFar.length - 1;
-  notices.push({
-    id: 'R02', level: 'info', field: field.key, fieldLabel: field.label,
-    at, length: 2,
-    excerpt: textSoFar.slice(Math.max(0, at - 8)) + delim + nextText.slice(0, 8),
-    message: `${field.fieldLabel ?? field.label}の末尾の「${tail}」と、区切りの「${delim}」が並んでいます`,
-    suggestion: `${field.label}の末尾から「${tail}」を消すと「${tail}${delim}」が「${delim}」になります`,
-  });
-}
-
+/** 本実装の formatReference を、旧プロトタイプと同じ呼び出し形で使う */
+const format = (type, values) => formatReference(type, DELIMITERS, values);
 /* ---------------------------------------------------------- */
 const CASES = [
   ['journal', {
@@ -220,6 +156,89 @@ console.log('\n【5】テンプレ側の見出し検査');
   ok(verifyAgainstTemplate(fake).ok && !r2.ok && r2.missing.length === 1,
      `全7種検出 / 1種欠落を検知 → ${r2.missing}`);
 }
+
+
+console.log('\n【6】高信頼フィールドの抽出 — 著者・論文名・誌名は切り分けない');
+{
+  const r = extractFields('青木和夫：着物の腰紐に関する研究：人間工学，2020，56(2)，45-52');
+  ok(r.fields.year === '2020' && r.fields.volume === '56(2)' && r.fields.pages === '45-52',
+     `実データ形式 → year/volume/pages を抽出: ${JSON.stringify(r.fields)}`);
+  ok(r.rest === '青木和夫：着物の腰紐に関する研究：人間工学',
+     `残りが人手で切る3塊になる → 「${r.rest}」`);
+  ok(!('authors' in r.fields) && !('title' in r.fields) && !('journal' in r.fields),
+     '著者名・論文名・誌名は推測で埋めない');
+}
+{
+  const r = extractFields('… 2014, 50(1), p. 1-10. https://doi.org/10.5100/jje.50.1');
+  ok(r.fields.doi === '10.5100/jje.50.1', `DOI: ${r.fields.doi}`);
+  ok(r.fields.year === '2014', 'DOI 内の数字を出版年と取り違えない');
+  ok(r.fields.pages === '1-10', `ページ: ${r.fields.pages}`);
+}
+{
+  const r = extractFields('… 神戸市, 2014-06-05/06, 日本人間工学会, 2014, p. S8-S9.');
+  ok(r.fields.period === '2014-06-05/06', `会議開催期間: ${r.fields.period}`);
+  ok(r.fields.year === '2014', '開催期間から年を誤って抜かない');
+  ok(r.fields.pages === 'S8-S9', 'S 付きページも拾う');
+}
+{
+  const r = extractFields('… http://www.ergonomics.jp/outline.html, (参照2021-04-01).');
+  ok(r.fields.url === 'http://www.ergonomics.jp/outline.html', `URL: ${r.fields.url}`);
+  ok(r.fields.accessDate === '2021-04-01', '参照日を YYYY-MM-DD に揃える');
+}
+ok(extractFields('… 2021/4/1 …').fields.year === '2021', 'スラッシュ区切りでも年を拾う');
+ok(extractFields('日本人間工学会編．…, 東京，共立出版，2003，139p.').fields.totalPages === '139',
+   '総ページ数 139p. を拾う');
+ok(extractFields('… 第50巻第1号 …').fields.volume === '50(1)', '和文の巻号表記も拾う');
+{
+  const r = extractFields('ISO 9241-210:2010. Ergonomics of human-system interaction.');
+  ok(r.fields.standardNo === 'ISO 9241-210' && r.fields.year === '2010',
+     `規格番号と制定年を分離: ${r.fields.standardNo} / ${r.fields.year}`);
+}
+ok(Object.keys(extractFields('何かよくわからない文字列').fields).length === 0,
+   '手がかりが無ければ何も埋めない');
+
+console.log('\n【7】種別の推定 — 根拠が無ければ null');
+{
+  const cases = [
+    ['ISO 9241-210:2010. Ergonomics…', 'standard', 'high'],
+    ['… http://www.ergonomics.jp/x.html, (参照2021-04-01).', 'online', 'high'],
+    ['… 神戸市, 2014-06-05/06, 日本人間工学会, 2014, p. S8-S9.', 'proceedings', 'medium'],
+    ['日本人間工学会編．…，共立出版，2003，139p.', 'book', 'medium'],
+    ['青木和夫：着物…：人間工学，2020，56(2)，45-52', 'journal', 'medium'],
+  ];
+  for (const [line, id, conf] of cases) {
+    const g = guessType(line);
+    ok(g.id === id && g.confidence === conf, `${id.padEnd(12)} [${g.confidence}] ${g.reason}`);
+  }
+  const g = guessType('何かよくわからない文字列');
+  ok(g.id === null, `手がかりが無ければ null → ${g.reason}`);
+}
+
+console.log('\n【8】モーダルの初期状態');
+{
+  const g = prepareGuide('青木和夫：着物の腰紐に関する研究：人間工学，2020，56(2)，45-52', REFS);
+  ok(g.typeId === 'journal', `種別を推定: ${g.typeId}`);
+  ok(g.found.includes('year') && g.found.includes('volume') && g.found.includes('pages'),
+     `自動で入れた欄を伝える: ${g.found.join(', ')}`);
+  ok(g.original.length > 0 && g.rest.length > 0, '元の文字列と残りの両方を保持する');
+}
+{
+  // 書籍として拾った totalPages を、論文へ切り替えたとき持ち越さない
+  const g = prepareGuide('…，共立出版，2003，139p.', REFS, 'journal');
+  ok(!('totalPages' in g.fields), '型に無いフィールドは持ち越さない');
+  ok(g.fields.year === '2003', '型にあるフィールドは残る');
+}
+{
+  // 抽出 → 組み立ての往復
+  const g = prepareGuide('青木和夫：着物の腰紐に関する研究：人間工学，2020，56(2)，45-52', REFS);
+  const r = buildReference(REFS, g.typeId, {
+    ...g.fields, authors: '青木和夫', title: '着物の腰紐に関する研究', journal: '人間工学',
+  });
+  ok(r.text === '青木和夫．着物の腰紐に関する研究．人間工学．2020，56(2)，p. 45-52．',
+     `往復して規定準拠になる → ${r.text}`);
+  ok(r.notices.length === 0, '警告なし');
+}
+ok(buildReference(REFS, 'nonexistent', {}).text === '', '未知の型IDでも落ちない');
 
 console.log(`\n===== ${pass} passed, ${fail} failed =====\n`);
 process.exit(fail === 0 ? 0 : 1);
