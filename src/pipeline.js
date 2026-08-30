@@ -271,6 +271,7 @@ export async function convert({
       headings: headingInfo.stats,
       outline: bodyResult.outline,
       appliedFixes,
+      overriddenRefs,
       summary: summarize(warnings),
     },
   };
