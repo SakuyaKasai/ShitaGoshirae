@@ -400,7 +400,7 @@ html, body {
 <script type="application/json" id="manifest">{
  "$schema": "jes-formatter/manifest@1",
  "generatedFrom": "template.docx",
- "generatedAt": "2026-08-16",
+ "generatedAt": "2026-08-30",
  "document": {
   "rootOpen": "\u003cw:document xmlns:wpc=\"http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas\" xmlns:cx=\"http://schemas.microsoft.com/office/drawing/2014/chartex\" xmlns:cx1=\"http://schemas.microsoft.com/office/drawing/2015/9/8/chartex\" xmlns:cx2=\"http://schemas.microsoft.com/office/drawing/2015/10/21/chartex\" xmlns:cx3=\"http://schemas.microsoft.com/office/drawing/2016/5/9/chartex\" xmlns:cx4=\"http://schemas.microsoft.com/office/drawing/2016/5/10/chartex\" xmlns:cx5=\"http://schemas.microsoft.com/office/drawing/2016/5/11/chartex\" xmlns:cx6=\"http://schemas.microsoft.com/office/drawing/2016/5/12/chartex\" xmlns:cx7=\"http://schemas.microsoft.com/office/drawing/2016/5/13/chartex\" xmlns:cx8=\"http://schemas.microsoft.com/office/drawing/2016/5/14/chartex\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:aink=\"http://schemas.microsoft.com/office/drawing/2016/ink\" xmlns:am3d=\"http://schemas.microsoft.com/office/drawing/2017/model3d\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:wp14=\"http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" xmlns:wpg=\"http://schemas.microsoft.com/office/word/2010/wordprocessingGroup\" xmlns:wpi=\"http://schemas.microsoft.com/office/word/2010/wordprocessingInk\" xmlns:wne=\"http://schemas.microsoft.com/office/word/2006/wordml\" xmlns:wps=\"http://schemas.microsoft.com/office/word/2010/wordprocessingShape\" mc:Ignorable=\"w14 w15 w16se w16cid wp14\">",
   "afterBody": "\u003c/w:document>"
@@ -645,6 +645,480 @@ html, body {
   "bulletNumIds": [
    14
   ]
+ },
+ "references": {
+  "delimiters": {
+   "period": "．",
+   "comma": "，",
+   "colon": "：",
+   "standardColon": ":"
+  },
+  "types": [
+   {
+    "id": "journal",
+    "label": "論文・雑誌",
+    "marker": "＜論文・雑誌の場合＞",
+    "spec": "著者名．論文名．誌名．出版年，巻数，号数，はじめのページ-おわりのページ. https://doi.org/DOI番号",
+    "examples": [
+     "大須賀美恵子, 青木和夫, 他. 座談会－ネットで語る人間工学の来し方行く先－. 人間工学. 2014, 50(1), p. 1-10. https://doi.org/10.5100/jje.50.1",
+     "Dul, J.; Bruder, R.; et al. A strategy for human factors/ergonomics: Developing the discipline and profession. Ergonomics. 2012, 55(4), p. 377-395. https://doi.org/10.1080/00140139.2012.661087"
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "authors",
+      "label": "著者名",
+      "required": true,
+      "follow": "period",
+      "hint": "英文は姓のみ記載し名はイニシャル。3名以上は2名まで書いて et al."
+     },
+     {
+      "key": "title",
+      "label": "論文名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "journal",
+      "label": "誌名",
+      "required": true,
+      "follow": "period",
+      "hint": "略記ではなく正式名称。英文は各単語の頭を大文字（前置詞等は除く）"
+     },
+     {
+      "key": "year",
+      "label": "出版年",
+      "required": true,
+      "follow": "comma",
+      "autofill": "year"
+     },
+     {
+      "key": "volume",
+      "label": "巻(号)",
+      "required": true,
+      "follow": "comma",
+      "autofill": "volume",
+      "hint": "50(1) の形。号がなければ 50 だけでも可"
+     },
+     {
+      "key": "pages",
+      "label": "ページ",
+      "required": false,
+      "follow": "comma",
+      "autofill": "pages",
+      "prefix": "p. ",
+      "hint": "1-10"
+     },
+     {
+      "key": "articleNo",
+      "label": "記事番号",
+      "required": false,
+      "follow": "comma",
+      "hint": "ページのない電子雑誌などの場合に記入"
+     },
+     {
+      "key": "doi",
+      "label": "DOI",
+      "required": false,
+      "lead": "period",
+      "autofill": "doi",
+      "prefix": "https://doi.org/",
+      "suppressTerminal": true,
+      "hint": "10.5100/jje.50.1 の形。URL ごと貼り付けても構いません"
+     }
+    ]
+   },
+   {
+    "id": "specialIssue",
+    "label": "特集記事中の1記事",
+    "marker": "＜特集記事中の1記事の場合＞",
+    "spec": "著者名．特集標題：論文名．誌名．出版年，巻数，号数，はじめのページ-おわりのページ．",
+    "examples": [
+     "French, J. C.; Chapin, A. C.; et al. Special topic section, Document search interface design for large-scale collections: Multiple viewpoints as an approach to digital library interfaces. Journal of the Association for Information Science and Technology. 2004, 55(10), p. 911-922. https://doi.org/10.1002/asi.20035"
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "authors",
+      "label": "著者名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "specialTitle",
+      "label": "特集標題",
+      "required": true,
+      "follow": "colon",
+      "hint": "この型では「：」が正しい区切りです（本文の句読点ルールとは別）"
+     },
+     {
+      "key": "title",
+      "label": "論文名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "journal",
+      "label": "誌名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "year",
+      "label": "出版年",
+      "required": true,
+      "follow": "comma",
+      "autofill": "year"
+     },
+     {
+      "key": "volume",
+      "label": "巻(号)",
+      "required": true,
+      "follow": "comma",
+      "autofill": "volume"
+     },
+     {
+      "key": "pages",
+      "label": "ページ",
+      "required": false,
+      "follow": "comma",
+      "autofill": "pages",
+      "prefix": "p. "
+     },
+     {
+      "key": "doi",
+      "label": "DOI",
+      "required": false,
+      "lead": "period",
+      "autofill": "doi",
+      "prefix": "https://doi.org/",
+      "suppressTerminal": true
+     }
+    ]
+   },
+   {
+    "id": "proceedings",
+    "label": "Proceedings・講演集",
+    "marker": "＜Proceedings・講演集の場合＞",
+    "spec": "著者名．“論文名”．会議報告書名．会議開催地，会議開催期間，会議主催機関名，出版者，出版年，はじめのページ-おわりのページ.",
+    "examples": [
+     "青木和夫. “日本人間工学会の歴史と現状”. 人間工学. 神戸市, 2014-06-05/06, 日本人間工学会, 2014, p. S8-S9.",
+     "Ebara, T.; Yoshitake, R.; et al. “Impact of Ergonomics good practices database as public relations tools”. International Ergonomics Association: Proceedings of 17th World congress on Ergonomics. Beijing, China, 2009-08-09/14."
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "authors",
+      "label": "著者名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "title",
+      "label": "論文名",
+      "required": true,
+      "follow": "period",
+      "prefix": "“",
+      "suffix": "”"
+     },
+     {
+      "key": "proceedingsName",
+      "label": "会議報告書名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "venue",
+      "label": "会議開催地",
+      "required": false,
+      "follow": "comma",
+      "hint": "東京の場合は省略できます"
+     },
+     {
+      "key": "period",
+      "label": "会議開催期間",
+      "required": false,
+      "follow": "comma",
+      "hint": "2014-06-05/06 の形"
+     },
+     {
+      "key": "organizer",
+      "label": "会議主催機関名",
+      "required": false,
+      "follow": "comma",
+      "hint": "出版者と同一なら省略できます"
+     },
+     {
+      "key": "publisher",
+      "label": "出版者",
+      "required": false,
+      "follow": "comma"
+     },
+     {
+      "key": "year",
+      "label": "出版年",
+      "required": false,
+      "follow": "comma",
+      "autofill": "year",
+      "hint": "会議開催年と同一なら省略できます"
+     },
+     {
+      "key": "pages",
+      "label": "ページ",
+      "required": false,
+      "follow": "comma",
+      "autofill": "pages",
+      "prefix": "p. ",
+      "hint": "CD-ROM などの電子媒体では任意"
+     },
+     {
+      "key": "doi",
+      "label": "DOI",
+      "required": false,
+      "lead": "period",
+      "autofill": "doi",
+      "prefix": "https://doi.org/",
+      "suppressTerminal": true
+     }
+    ]
+   },
+   {
+    "id": "book",
+    "label": "書籍（1冊）",
+    "marker": "＜書籍（1冊）の場合＞",
+    "spec": "著者名．書名．版表示，出版地，出版者，出版年，総ページ数．",
+    "examples": [
+     "日本人間工学会編．ユニバーサルデザイン実践ガイドライン. 東京，共立出版，2003，139p.",
+     "Ningen, J. Book Title. Ergonomics Press, 2017, 200p."
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "authors",
+      "label": "著者名",
+      "required": true,
+      "follow": "period",
+      "hint": "編者の場合は「日本人間工学会編」のように「編」まで含めて記入"
+     },
+     {
+      "key": "bookTitle",
+      "label": "書名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "edition",
+      "label": "版表示",
+      "required": false,
+      "follow": "comma",
+      "hint": "1st ed. / 第2版 など。初版なら空欄"
+     },
+     {
+      "key": "place",
+      "label": "出版地",
+      "required": false,
+      "follow": "comma",
+      "hint": "原著に記載がなければ空欄のままにしてください（推測して埋めない）"
+     },
+     {
+      "key": "publisher",
+      "label": "出版者",
+      "required": true,
+      "follow": "comma"
+     },
+     {
+      "key": "year",
+      "label": "出版年",
+      "required": true,
+      "follow": "comma",
+      "autofill": "year"
+     },
+     {
+      "key": "totalPages",
+      "label": "総ページ数",
+      "required": false,
+      "follow": "comma",
+      "suffix": "p",
+      "hint": "139 と入力すると 139p．になります"
+     },
+     {
+      "key": "doi",
+      "label": "DOI",
+      "required": false,
+      "lead": "period",
+      "autofill": "doi",
+      "prefix": "https://doi.org/",
+      "suppressTerminal": true
+     }
+    ]
+   },
+   {
+    "id": "bookChapter",
+    "label": "書籍（章）",
+    "marker": "＜書籍の場合＞",
+    "spec": "著者名．“章の見出し”．書名．編者名．版表示，出版地，出版者，出版年，はじめのページ-おわりのページ．",
+    "examples": [
+     "人間太郎．“章の見出し”．人間工学実践ガイドライン．日本人間工学会編. 東京，日本人間工学会，2017，p.1-10．",
+     "Ningen, T. “Chapter title”. Book Title. 1st ed., Ergonomics Press, 2017, p.1-10."
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "authors",
+      "label": "著者名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "chapterTitle",
+      "label": "章の見出し",
+      "required": true,
+      "follow": "period",
+      "prefix": "“",
+      "suffix": "”"
+     },
+     {
+      "key": "bookTitle",
+      "label": "書名",
+      "required": true,
+      "follow": "period"
+     },
+     {
+      "key": "editor",
+      "label": "編者名",
+      "required": false,
+      "follow": "period",
+      "hint": "著者と編者が同一なら空欄"
+     },
+     {
+      "key": "edition",
+      "label": "版表示",
+      "required": false,
+      "follow": "comma"
+     },
+     {
+      "key": "place",
+      "label": "出版地",
+      "required": false,
+      "follow": "comma"
+     },
+     {
+      "key": "publisher",
+      "label": "出版者",
+      "required": true,
+      "follow": "comma"
+     },
+     {
+      "key": "year",
+      "label": "出版年",
+      "required": true,
+      "follow": "comma",
+      "autofill": "year"
+     },
+     {
+      "key": "pages",
+      "label": "ページ",
+      "required": false,
+      "follow": "comma",
+      "autofill": "pages",
+      "prefix": "p. "
+     },
+     {
+      "key": "doi",
+      "label": "DOI",
+      "required": false,
+      "lead": "period",
+      "autofill": "doi",
+      "prefix": "https://doi.org/",
+      "suppressTerminal": true
+     }
+    ]
+   },
+   {
+    "id": "online",
+    "label": "オンライン資料・Webページ",
+    "marker": "＜オンライン上の電子資料・コンテンツの場合＞",
+    "spec": "著者名．“ウェブページの題名”．ウェブサイトの名称．入手先，(入手日付)．",
+    "examples": [
+     "日本人間工学会テレワークガイド委員会. “2010年版ノートパソコン利用の人間工学ガイドライン”. http://www.ergonomics.jp/product/guideline.html, (参照 2012-10-19).",
+     "日本人間工学会. “人間工学とは－人間工学の概説”. http://www.ergonomics.jp/outline.html, (参照2021-04-01)."
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "authors",
+      "label": "著者名",
+      "required": true,
+      "follow": "period",
+      "hint": "団体名でも構いません"
+     },
+     {
+      "key": "pageTitle",
+      "label": "ウェブページの題名",
+      "required": true,
+      "follow": "period",
+      "prefix": "“",
+      "suffix": "”"
+     },
+     {
+      "key": "siteName",
+      "label": "ウェブサイトの名称",
+      "required": false,
+      "follow": "period",
+      "hint": "テンプレートの例示では省略されています"
+     },
+     {
+      "key": "url",
+      "label": "入手先",
+      "required": true,
+      "follow": "comma",
+      "autofill": "url"
+     },
+     {
+      "key": "accessDate",
+      "label": "入手日付",
+      "required": true,
+      "autofill": "accessDate",
+      "prefix": "(参照 ",
+      "suffix": ")",
+      "hint": "2021-04-01 の形"
+     }
+    ]
+   },
+   {
+    "id": "standard",
+    "label": "規格（ISO / JIS など）",
+    "marker": "＜ISO/JISなどの規格文書の場合＞",
+    "spec": "規格番号：制定年．規格標題．",
+    "examples": [
+     "ISO 9241-210:2010. Ergonomics of human-system interaction -- Part 210: Human-centred design for interactive systems."
+    ],
+    "terminal": "period",
+    "fields": [
+     {
+      "key": "standardNo",
+      "label": "規格番号",
+      "required": true,
+      "follow": "standardColon",
+      "hint": "ISO 9241-210 / JIS Z 8530 など"
+     },
+     {
+      "key": "year",
+      "label": "制定年",
+      "required": true,
+      "follow": "period",
+      "autofill": "year"
+     },
+     {
+      "key": "standardTitle",
+      "label": "規格標題",
+      "required": true
+     }
+    ]
+   }
+  ],
+  "verifiedAgainstTemplate": true,
+  "note": "書式はテンプレ「文　献」節の転記。全角/半角の切替は delimiters の period / comma を書き換える"
  },
  "limits": {
   "bodyChars": 12000,
