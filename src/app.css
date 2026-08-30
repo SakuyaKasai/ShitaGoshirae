@@ -380,3 +380,29 @@ html, body {
   from { background: #F6DCC0; }
   to   { background: #FBEFE0; }
 }
+
+/* ゲラ上の「ガイド編集」ボタンと、編集済みの行 */
+.gl { position: relative; }
+.gl-guide {
+  flex: 0 0 auto; margin-left: 8px; padding: 1px 8px;
+  font-size: .72rem; white-space: nowrap; cursor: pointer;
+  border: 1px solid #cfc7bd; border-radius: 3px;
+  background: #f7f4f0; color: #5a524c;
+  opacity: 0; transition: opacity .12s;
+}
+.gl:hover .gl-guide,
+.gl:focus-within .gl-guide,
+.gl-guide:focus { opacity: 1; }
+
+.gl-t.is-edited {
+  background: linear-gradient(transparent 70%, #dff0df 70%);
+}
+.gl-t.is-edited::after {
+  content: '整形済';
+  margin-left: 6px; font-size: .68rem; color: #4a7a4a;
+  padding: 0 4px; border: 1px solid #b6d4b6; border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+  .gl-guide { opacity: 1; }   /* スマホには hover が無い */
+}
