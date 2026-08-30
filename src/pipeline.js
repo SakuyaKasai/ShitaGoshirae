@@ -37,7 +37,7 @@ const REQUIRED_PARTS = [
  * @returns {Promise<{bytes:Uint8Array, warnings:Array, report:object}>}
  */
 export async function convert({
-  templateBytes, sourceBytes, manifest, meta = {}, autoFixIds = [], bodyStart = 0,
+  templateBytes, sourceBytes, manifest, meta = {}, autoFixIds = [], bodyStart = 0, referenceOverrides = null,
 }) {
   const warnings = [];
 
@@ -116,6 +116,27 @@ export async function convert({
     }
   }
 
+  /* ---------- 4-2. ガイド編集で確定した参考文献を差し替える ---------- */
+  //     必ず自動修正の「あと」に置くこと。applyFixesById は本文全体の
+  //     文字オフセットで動くため、先に行を差し替えるとオフセットが総崩れになる。
+  //     行単位の上書きなので、ここでは行数が変わらない。
+  //
+  //     ここで入る文字列は人間が確定させたものなので、自動修正は当たらない
+  //     （すでに適用済みの文字列を丸ごと置き換えるため）。「勝手に直さない」を守る。
+  let overriddenRefs = 0;
+  if (referenceOverrides) {
+    const entries = referenceOverrides instanceof Map
+      ? [...referenceOverrides.entries()]
+      : Object.entries(referenceOverrides).map(([k, v]) => [Number(k), v]);
+    fixedLines = [...fixedLines];
+    for (const [i, text] of entries) {
+      if (!Number.isInteger(i) || i < 0 || i >= fixedLines.length) continue;
+      if (typeof text !== 'string' || !text.trim()) continue;
+      fixedLines[i] = text;
+      overriddenRefs++;
+    }
+  }
+  
   const blocks = src.blocks.map((b, i) =>
     (b.kind === 'paragraph' || b.kind === 'math') ? { ...b, text: fixedLines[i] ?? b.text } : b);
 
