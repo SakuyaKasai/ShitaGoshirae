@@ -47,8 +47,6 @@ for (const [script, out] of [
 
 /* ---------- 実行 ---------- */
 const suites = [
-  // ファイルを読まないもの（最初に走らせて速く落とす）
-  { file: 'reference-types_test.mjs', cwd: root },
   // テンプレ素材を読むもの（カレントを .testwork にして走らせる）
   { file: 'checker_test.mjs', cwd: work },
   { file: 'heading-detect_test.mjs', cwd: work },
@@ -59,6 +57,8 @@ const suites = [
   { file: 'compose_test.mjs', cwd: root, needs: 'fixture-source.docx' },
   // ブラウザ（環境が無ければ飛ばす）
   { file: 'ui_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true },
+  // ファイルを読まないもの
+  { file: 'reference-types_test.mjs', cwd: root },
 ];
 
 let total = 0, failed = 0, skipped = 0;
