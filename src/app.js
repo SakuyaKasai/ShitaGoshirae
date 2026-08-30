@@ -12,7 +12,6 @@ import JSZip from 'jszip';
 import { parseSourceDocx, blocksToLines } from './source-parse.js';
 import { extractMeta, reviewMeta } from './extract-meta.js';
 import { convert } from './pipeline.js';
-import { runChecks } from './checker.js';
 import { analyzeHeadings, detectHeading } from './heading-detect.js';
 import { runChecks, findReferenceSection } from './checker.js';
 import { openReferenceGuide } from './reference-guide.js';
