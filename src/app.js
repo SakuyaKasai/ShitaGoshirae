@@ -14,6 +14,8 @@ import { extractMeta, reviewMeta } from './extract-meta.js';
 import { convert } from './pipeline.js';
 import { runChecks } from './checker.js';
 import { analyzeHeadings, detectHeading } from './heading-detect.js';
+import { runChecks, findReferenceSection } from './checker.js';
+import { openReferenceGuide } from './reference-guide.js';
 
 /* ============================================================
  * 状態
@@ -32,6 +34,7 @@ const state = {
   warnings: [],
   outline: [],
   lineIssues: new Map(),   // 行番号 → 警告の配列
+  referenceEdits: new Map(),
   autoFix: new Set(['W01', 'W02', 'W15', 'W22']),
   step: 1,
 };
@@ -404,12 +407,18 @@ function mapIssuesToLines(lines, results) {
 
 function galleyColumn(lines, headings) {
   const headingAt = new Map(headings.headings.map(h => [h.index, h]));
+  const refStart = findReferenceSection(lines);
 
   const rows = lines.map((text, i) => {
     const issues = state.lineIssues.get(i) ?? [];
     const h = headingAt.get(i);
     const worst = issues.some(x => x.level === 'warn') ? 'warn'
       : issues.length ? 'info' : null;
+
+    // 「文献」見出しより後ろの、中身のある行だけがガイド編集の対象。
+    // 見出しそのもの（refStart 行）は含めない。
+    const isRef = refStart !== null && i > refStart && text.trim().length > 0;   
+    const shown = state.referenceEdits.get(i) ?? text;                            
 
     return el('div', {
       class: `gl ${worst ? `gl-${worst}` : ''} ${h ? `gl-h gl-h${h.level}` : ''}`,
@@ -418,9 +427,13 @@ function galleyColumn(lines, headings) {
       el('span', { class: 'gl-n' }, String(i + 1)),
       el('span', { class: 'gl-mark', title: issues.map(x => x.id).join(' ') },
         issues.length ? issues.map(x => x.id).join(' ') : ''),
-      el('span', { class: 'gl-t' },
+      el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },   
         h ? el('span', { class: 'gl-lv' }, `H${h.level}`) : null,
-        text || el('span', { class: 'gl-empty' }, '（空行）')));
+        text || el('span', { class: 'gl-empty' }, '（空行）'))),
+      isRef ? el('button', {
+        class: 'gl-guide', type: 'button', title: '規定の書式に整えます',
+        onclick: e => { e.stopPropagation(); openGuideFor(i); },
+      }, 'ガイド編集') : null);
   });
 
   return el('div', { class: 'galley' },
@@ -428,6 +441,33 @@ function galleyColumn(lines, headings) {
       el('h2', {}, 'ゲラ'),
       el('p', { class: 'pane-sub' }, `本文 ${lines.length}行・見出し ${headings.stats.total}件`)),
     el('div', { class: 'galley-body' }, ...rows));
+}
+
+/** ガイド編集を開き、確定した文字列を持ち帰る。
+ *  原文は書き換えず、行番号ひもづけで別に持つ。出力時にだけ差し替える。 */
+function openGuideFor(i) {
+  const references = state.manifest?.references;
+  if (!references) {
+    alert('この manifest には参考文献の書式定義が入っていません。テンプレートを取り込み直してください');
+    return;
+  }
+  openReferenceGuide({
+    line: state.referenceEdits.get(i) ?? state.lines[i],
+    lineNo: i + 1,
+    references,
+    onApply: text => {
+      state.referenceEdits.set(i, text);
+      const node = document.querySelector(`#gl-${i} .gl-t`);
+      if (node) {
+        node.textContent = text;
+        node.classList.add('is-edited');
+      }
+      const note = $('#out-note');
+      if (note) note.textContent =
+        `自動で直す項目: ${[...state.autoFix].join('・') || 'なし'}` +
+        `／参考文献をガイド編集: ${state.referenceEdits.size}件`;
+    },
+  });
 }
 
 function sideColumn(headings) {
@@ -530,6 +570,7 @@ async function doConvert() {
       meta: state.meta,
       autoFixIds: [...state.autoFix],
       bodyStart: state.bodyStart,
+      referenceOverrides: Object.fromEntries(state.referenceEdits),
     });
 
     const blob = new Blob([res.bytes], {
