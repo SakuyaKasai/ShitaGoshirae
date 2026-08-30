@@ -419,20 +419,21 @@ function galleyColumn(lines, headings) {
     const isRef = refStart !== null && i > refStart && text.trim().length > 0;   
     const shown = state.referenceEdits.get(i) ?? text;                            
 
-    return el('div', {
+return el('div', {
       class: `gl ${worst ? `gl-${worst}` : ''} ${h ? `gl-h gl-h${h.level}` : ''}`,
       id: `gl-${i}`, tabindex: 0,
     },
       el('span', { class: 'gl-n' }, String(i + 1)),
       el('span', { class: 'gl-mark', title: issues.map(x => x.id).join(' ') },
         issues.length ? issues.map(x => x.id).join(' ') : ''),
-      el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },   
+      el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },    
         h ? el('span', { class: 'gl-lv' }, `H${h.level}`) : null,
-        text || el('span', { class: 'gl-empty' }, '（空行）'))),
+        text || el('span', { class: 'gl-empty' }, '（空行）')), // ← ここで終わっていた閉じカッコを正しく閉じました
       isRef ? el('button', {
         class: 'gl-guide', type: 'button', title: '規定の書式に整えます',
         onclick: e => { e.stopPropagation(); openGuideFor(i); },
-      }, 'ガイド編集') : null);
+      }, 'ガイド編集') : null
+    ); 
   });
 
   return el('div', { class: 'galley' },
