@@ -45,6 +45,7 @@ const CONF_LABEL = { high: '確度が高い推定', medium: '推定', low: '手�
  * @param {function} opts.onApply     (text: string) => void
  */
 export function openReferenceGuide({ line, lineNo, references, onApply }) {
+  document.querySelector('.rg-back')?.remove();
   const original = String(line ?? '').trim();
   let guide = prepareGuide(original, references);
   let values = { ...guide.fields };
@@ -190,7 +191,7 @@ export function openReferenceGuide({ line, lineNo, references, onApply }) {
   /* ---- 組み立て ---- */
   box.append(
     el('div', { class: 'rg-head' },
-      el('h2', {}, `参考文献 ${lineNo ?? ''} のガイド編集`.replace('  ', ' ')),
+      el('h2', {}, lineNo ? `参考文献 ${lineNo}) のガイド編集` : '参考文献のガイド編集'),
       el('button', { class: 'rg-x', type: 'button', title: '閉じる', onclick: close }, '×')),
 
     el('div', { class: 'rg-body' },

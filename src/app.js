@@ -431,7 +431,7 @@ return el('div', {
         text || el('span', { class: 'gl-empty' }, '（空行）')), // ← ここで終わっていた閉じカッコを正しく閉じました
       isRef ? el('button', {
         class: 'gl-guide', type: 'button', title: '規定の書式に整えます',
-        onclick: e => { e.stopPropagation(); openGuideFor(i); },
+        onclick: e => { e.stopPropagation(); openGuideFor(i, i - refStart); },
       }, 'ガイド編集') : null
     ); 
   });
@@ -445,7 +445,7 @@ return el('div', {
 
 /** ガイド編集を開き、確定した文字列を持ち帰る。
  *  原文は書き換えず、行番号ひもづけで別に持つ。出力時にだけ差し替える。 */
-function openGuideFor(i) {
+function openGuideFor(i, refNo) {
   const references = state.manifest?.references;
   if (!references) {
     alert('この manifest には参考文献の書式定義が入っていません。テンプレートを取り込み直してください');
@@ -453,7 +453,7 @@ function openGuideFor(i) {
   }
   openReferenceGuide({
     line: state.referenceEdits.get(i) ?? state.lines[i],
-    lineNo: i + 1,
+    lineNo: refNo,
     references,
     onApply: text => {
       state.referenceEdits.set(i, text);
