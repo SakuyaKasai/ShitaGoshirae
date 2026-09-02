@@ -26,7 +26,10 @@ const errors = [];
 page.on('pageerror', e => { if (!isNetworkNoise(String(e))) errors.push(String(e)); });
 page.on('console', m => { if (m.type() === 'error' && !isNetworkNoise(m.text())) errors.push(m.text()); });
 
-await page.goto('file://' + path.join(root, 'index.html'));
+// 開くのは run-all が「いまのソースから」焼いた1枚。
+// 直接叩いたときだけ、リポジトリの index.html にフォールバックする。
+const bundle = process.env.BUNDLE_HTML ?? path.join(root, 'index.html');
+await page.goto('file://' + bundle);
 await page.waitForSelector('.drop');
 
 console.log('\n【1】起動');

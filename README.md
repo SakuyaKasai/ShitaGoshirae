@@ -32,7 +32,7 @@ npm test           # 242件
 npm run build      # → index.html
 ```
 
-**`npm run build` は最後に置くこと。** テストは配布物を作り直さない（`test/ui_test.mjs` は既にある `index.html` を開く）ため、この順で回さないと**ソースを直したのに古い配布物が残ったまま、テストは緑**になる。
+**`npm run build` はリポジトリの配布物を更新するためのもので、テストの前提ではない。** `npm test` はブラウザテスト用に、いまのソースから `.testwork/index.html` を自前で焼いて、そちらを開く。したがって build を忘れてもテストは正しく落ちる（作業ツリーの `index.html` にも触らない）。
 
 **既定ブランチは `dev`。** 作業は `dev` で行い、`main` への PR がマージされると GitHub Actions が manifest 生成 → テスト → ビルドを回して生成物を書き戻す。したがって **`dev` の `index.html` と `manifest.json` はソースより古いのが正常**。配布物の中身を見るときは main 側を見ること。
 

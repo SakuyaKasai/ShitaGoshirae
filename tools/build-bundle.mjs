@@ -18,6 +18,14 @@ import * as esbuild from 'esbuild';
 const root = path.resolve(import.meta.dirname, '..');
 const r = p => path.join(root, p);
 
+/* 出力先と manifest は差し替えられる。
+ * テストが「いまのソースから焼いた1枚」を、作業ツリーを汚さずに検証するため。
+ *   node tools/build-bundle.mjs [出力先.html] [manifest.json]
+ * 既定は従来どおり index.html / src/manifest.json。 */
+const [, , outArg = 'index.html', manifestArg = 'src/manifest.json'] = process.argv;
+const outPath = path.isAbsolute(outArg) ? outArg : r(outArg);
+const manifestPath = path.isAbsolute(manifestArg) ? manifestArg : r(manifestArg);
+
 /* ---------- 1. JS をひとまとめに ---------- */
 const built = await esbuild.build({
   entryPoints: [r('src/app.js')],
@@ -29,7 +37,7 @@ const js = built.outputFiles[0].text;
 
 /* ---------- 2. テンプレを base64 で同梱 ---------- */
 const templateB64 = fs.readFileSync(r('template.docx')).toString('base64');
-const manifest = fs.readFileSync(r('src/manifest.json'), 'utf8');
+const manifest = fs.readFileSync(manifestPath, 'utf8');
 const css = fs.readFileSync(r('src/app.css'), 'utf8');
 
 /* ---------- 3. HTML を組む ---------- */
@@ -64,10 +72,10 @@ boot({
 </html>
 `;
 
-fs.writeFileSync(r('index.html'), html);
+fs.writeFileSync(outPath, html);
 
 const kb = n => `${(n / 1024).toFixed(0)} KB`;
-console.log('✅ index.html を生成しました');
+console.log(`✅ ${path.relative(root, outPath)} を生成しました`);
 console.log(`   JavaScript : ${kb(js.length)}`);
 console.log(`   テンプレ    : ${kb(templateB64.length)} (base64)`);
 console.log(`   合計        : ${kb(html.length)}`);
