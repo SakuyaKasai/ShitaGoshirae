@@ -32,7 +32,11 @@ const errors = [];
 page.on('pageerror', e => { if (!isNoise(String(e))) errors.push(String(e)); });
 page.on('console', m => { if (m.type() === 'error' && !isNoise(m.text())) errors.push(m.text()); });
 
-await page.goto('file://' + path.join(root, 'index.html'));
+// 開くのは run-all が「いまのソースから」焼いた1枚。
+// 直接叩いたときだけ、リポジトリの index.html にフォールバックする。
+// （単体で走らせて落ちたら、まず `npm run build` を疑うこと）
+const bundle = process.env.BUNDLE_HTML ?? path.join(root, 'index.html');
+await page.goto('file://' + bundle);
 await page.setInputFiles('#file', path.join(root, 'fixture-full.docx'));
 await page.waitForSelector('.form', { timeout: 20000 });
 await page.click('.actions .btn-primary');
