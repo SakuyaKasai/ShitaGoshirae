@@ -55,8 +55,16 @@ const suites = [
   // 原稿を読むもの
   { file: 'source-parse_test.mjs', cwd: root, needs: 'fixture-source.docx' },
   { file: 'compose_test.mjs', cwd: root, needs: 'fixture-source.docx' },
+  //
+  // test/pipeline_test.mjs はここに載せない。名前に反して**テストではない**。
+  // アサーションを1つも持たず、report と警告一覧を表示して out.docx を書き出す
+  // だけの手動確認用スクリプトである。走らせても合否は増えず、出力だけ濁る。
+  // pipeline の中身は compose_test.mjs が検証している。
+  //
   // ブラウザ（環境が無ければ飛ばす）
+  //   配布物 index.html を file:// で開く。ソースを直したら先に npm run build すること。
   { file: 'ui_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true },
+  { file: 'reference-guide_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true },
   // ファイルを読まないもの
   { file: 'reference-types_test.mjs', cwd: root },
 ];
