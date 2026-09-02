@@ -23,14 +23,18 @@
 
 ## 配布と実行
 
-配布物は **`index.html` 1ファイル**（約326KB）。テンプレ `.docx` を base64 で同梱しているので、静的ホスティングに置くだけで動く。ビルド環境もサーバも要らない。
+配布物は **`index.html` 1ファイル**（約360KB）。テンプレ `.docx` を base64 で同梱しているので、静的ホスティングに置くだけで動く。ビルド環境もサーバも要らない。
 
 ```bash
 npm install
 npm run manifest   # template.docx → src/manifest.json
+npm test           # 242件
 npm run build      # → index.html
-npm test           # 187件
 ```
+
+**`npm run build` は最後に置くこと。** テストは配布物を作り直さない（`test/ui_test.mjs` は既にある `index.html` を開く）ため、この順で回さないと**ソースを直したのに古い配布物が残ったまま、テストは緑**になる。
+
+**既定ブランチは `dev`。** 作業は `dev` で行い、`main` への PR がマージされると GitHub Actions が manifest 生成 → テスト → ビルドを回して生成物を書き戻す。したがって **`dev` の `index.html` と `manifest.json` はソースより古いのが正常**。配布物の中身を見るときは main 側を見ること。
 
 開発中は `src/app.js` を直接読み込む形でも動くが、`manifest.json` と テンプレの base64 が要るため、`npm run build` 経由が早い。
 
@@ -52,16 +56,24 @@ src/
   style-import.js       原稿から表スタイル定義を運ぶ
   compose.js            ハンコ押し・表の幅調整・所属差し替え
   pipeline.js           変換の一本道
-  app.js / app.css      画面
+  reference-format.js   参考文献の組み立て・フィールド抽出・種別推定
+  reference-guide.js    参考文献のガイド編集モーダル
+  app.js                画面
+  app.css               画面のスタイル（ガイド編集の rg- 節もここに同居させる）
   manifest.json         テンプレ固有値（生成物）
 tools/
   build-manifest.mjs    テンプレ → manifest.json
   build-bundle.mjs      → index.html
+  reference-types.mjs   参考文献7種の書式定義（テンプレ「文　献」節の転記）
   make-fixture.py       検証用原稿（本文の問題を再現）
   make-fixture-full.py  検証用原稿（表題付き）
 test/
   run-all.mjs           全テストのランナー
+.github/workflows/
+  build.yml             manifest 生成 → テスト → 配布物ビルド → 生成物の書き戻し
 ```
+
+**CSS を別ファイルに分けないこと。** `build-bundle.mjs` は `src/app.css` だけをインライン化するため、別ファイルの CSS は `index.html` に入らない。モーダルが `position: fixed` にならずページ下部に並ぶ、という分かりにくい壊れ方をする。
 
 ---
 
@@ -115,6 +127,6 @@ soffice --headless --convert-to pdf out.docx   # 目視用
 
 - **PDF書き出しは Windows で行う。** Mac には ＭＳ明朝・ＭＳゴシック・メイリオが無い
 - 図表の最終的な配置は人間が行う（段抜き／片段の判断は内容依存のため）
-- 参考文献のSIST02整形は行わない（差分の指摘のみ）
+- 参考文献の**構造解析**（著者名・誌名・巻号への自動分解）は行わない。7種の書式に沿った組み立てと、区切り記号の統一は「ガイド編集」で支援する（切るのは人間、運ぶのがアプリ）
 - 見出し番号の自動振り直しは行わない（本文中の相互参照を壊す恐れがあるため）
 - 実原稿での検証は未実施。検証はすべて自作の fixture による
