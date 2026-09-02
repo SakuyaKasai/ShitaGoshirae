@@ -426,12 +426,14 @@ return el('div', {
       el('span', { class: 'gl-n' }, String(i + 1)),
       el('span', { class: 'gl-mark', title: issues.map(x => x.id).join(' ') },
         issues.length ? issues.map(x => x.id).join(' ') : ''),
-      el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },    
+      el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },
         h ? el('span', { class: 'gl-lv' }, `H${h.level}`) : null,
-        text || el('span', { class: 'gl-empty' }, '（空行）')), // ← ここで終わっていた閉じカッコを正しく閉じました
+        shown || el('span', { class: 'gl-empty' }, '（空行）')),
       isRef ? el('button', {
         class: 'gl-guide', type: 'button', title: '規定の書式に整えます',
-        onclick: e => { e.stopPropagation(); openGuideFor(i, i - refStart); },
+        // 原文そのものを渡す。ここで添字を渡すと、どの配列の添字なのかが
+        // 呼ばれた先で分からなくなる（bodyLines と state.lines を取り違えた実績あり）。
+        onclick: e => { e.stopPropagation(); openGuideFor(i, i - refStart, text); },
       }, 'ガイド編集') : null
     ); 
   });
@@ -444,15 +446,22 @@ return el('div', {
 }
 
 /** ガイド編集を開き、確定した文字列を持ち帰る。
- *  原文は書き換えず、行番号ひもづけで別に持つ。出力時にだけ差し替える。 */
-function openGuideFor(i, refNo) {
+ *  原文は書き換えず、行番号ひもづけで別に持つ。出力時にだけ差し替える。
+ *
+ *  @param {number} i         bodyLines（＝state.lines.slice(bodyStart)）の添字。
+ *                            state.referenceEdits のキーであり、pipeline の
+ *                            referenceOverrides もこの添字空間で解釈する。
+ *                            **state.lines の添字ではない。**
+ *  @param {number} refNo     表示用の文献番号
+ *  @param {string} original  その行の原文。添字から引き直さない */
+function openGuideFor(i, refNo, original) {
   const references = state.manifest?.references;
   if (!references) {
     alert('この manifest には参考文献の書式定義が入っていません。テンプレートを取り込み直してください');
     return;
   }
   openReferenceGuide({
-    line: state.referenceEdits.get(i) ?? state.lines[i],
+    line: state.referenceEdits.get(i) ?? original,
     lineNo: refNo,
     references,
     onApply: text => {
