@@ -45,6 +45,33 @@ for (const [script, out] of [
   }
 }
 
+/* ---------- ブラウザ用に「いまのソースから焼いた1枚」を用意する ----------
+ *
+ * ブラウザテストは配布物 HTML を file:// で開く。リポジトリの index.html を
+ * そのまま開くと、**ソースを直しても古い配布物を検証してしまう**。
+ *   - npm test は build を呼ばない
+ *   - dev の index.html / manifest.json は意図的に古い（CI が焼くのは main だけ）
+ * この2つが重なると「直したのにテストが古い挙動で落ちる／古いまま緑になる」。
+ * 実際に両方踏んだ（→ handoff 15-9）。
+ *
+ * そこでランナー側で .testwork へ焼き、そちらを開かせる。
+ * 作業ツリーの index.html / src/manifest.json には触らない。
+ */
+const bundle = path.join(work, 'index.html');
+let bundleReady = false;
+try {
+  const tmpManifest = path.join(work, 'manifest.json');
+  execFileSync('node', [path.join(root, 'tools/build-manifest.mjs'),
+                        path.join(root, 'template.docx'), tmpManifest],
+               { cwd: root, stdio: 'pipe' });
+  execFileSync('node', [path.join(root, 'tools/build-bundle.mjs'), bundle, tmpManifest],
+               { cwd: root, stdio: 'pipe' });
+  bundleReady = true;
+  console.log(`\n📦 検証用の配布物を焼きました: ${path.relative(root, bundle)}`);
+} catch (err) {
+  console.log(`\n⚠️ 検証用の配布物を焼けませんでした。ブラウザテストは飛ばします\n${String(err.stderr ?? err).slice(0, 300)}`);
+}
+
 /* ---------- 実行 ---------- */
 const suites = [
   // テンプレ素材を読むもの（カレントを .testwork にして走らせる）
@@ -62,9 +89,9 @@ const suites = [
   // pipeline の中身は compose_test.mjs が検証している。
   //
   // ブラウザ（環境が無ければ飛ばす）
-  //   配布物 index.html を file:// で開く。ソースを直したら先に npm run build すること。
-  { file: 'ui_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true },
-  { file: 'reference-guide_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true },
+  //   開くのは .testwork に焼いた1枚。リポジトリの index.html ではない（上の説明を参照）。
+  { file: 'ui_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true, browser: true },
+  { file: 'reference-guide_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true, browser: true },
   // ファイルを読まないもの
   { file: 'reference-types_test.mjs', cwd: root },
 ];
@@ -77,10 +104,16 @@ for (const s of suites) {
     skipped++;
     continue;
   }
+  if (s.browser && !bundleReady) {
+    console.log(`\n⏭  ${s.file} — 検証用の配布物が無いので飛ばします`);
+    skipped++;
+    continue;
+  }
   console.log(`\n${'─'.repeat(56)}\n▶ ${s.file}`);
   try {
     const out = execFileSync('node', [path.join(root, 'test', s.file)],
-      { cwd: s.cwd, encoding: 'utf8' });
+      { cwd: s.cwd, encoding: 'utf8',
+        env: { ...process.env, ...(s.browser ? { BUNDLE_HTML: bundle } : {}) } });
     const m = /(\d+) passed, (\d+) failed/.exec(out);
     if (m) { total += Number(m[1]); failed += Number(m[2]); }
     console.log(out.trim().split('\n').slice(-1)[0]);
