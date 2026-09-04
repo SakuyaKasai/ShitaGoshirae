@@ -16,6 +16,7 @@ import {
 } from './xml-util.js';
 import { detectHeading, formatNumber, applyKintouWariduke } from './heading-detect.js';
 import { transferImage, buildInlineDrawingXml, COLUMN_WIDTH } from './image-transfer.js';
+import { REFERENCE_MARKER_RE } from './reference-format.js';
 
 /* ============================================================
  * 段落記号の rPr を pPr から剥がす
@@ -217,7 +218,9 @@ export function composeBody(blocks, manifest, ctx) {
         if (referenceAt !== null && i > referenceAt) {
           // 先頭の "1) " は numPr の自動採番に任せるので剥がす。
           // ここは「作る」ではなく「重複を外す」処理である。
-          const stripped = block.text.replace(/^\s*[0-9０-９]+\s*[)）.．]\s*/, '');
+          // 判定は reference-format.js と共有する。別々に持つと、片方だけ
+          // 広げたときに「自動番号 + 手打ち番号」の二重になる。
+          const stripped = block.text.replace(REFERENCE_MARKER_RE, '');
           parts.push(paragraph(stamps.reference.pPr, textRun(stamps.reference.rPr, stripped)));
           return;
         }
