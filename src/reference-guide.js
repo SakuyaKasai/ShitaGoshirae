@@ -50,6 +50,9 @@ export function openReferenceGuide({ line, lineNo, references, onApply }) {
   let guide = prepareGuide(original, references);
   let values = { ...guide.fields };
   let rest = guide.rest;
+  // 行頭の文献番号は整形の対象ではなく、そのまま運ぶもの。
+  // 組み立てた文字列の先頭へ付け直す（付け直さないと、整形した行だけ番号が消える）。
+  const marker = guide.marker;
 
   const root = el('div', { class: 'rg-back', onclick: e => { if (e.target === root) close(); } });
   const box = el('div', {
@@ -166,7 +169,9 @@ export function openReferenceGuide({ line, lineNo, references, onApply }) {
 
     previewWrap.replaceChildren(
       el('p', { class: 'rg-cap' }, 'できあがり'),
-      el('p', { class: 'rg-out' }, ...(text ? parts : [el('span', { class: 'rg-empty' }, '（まだ何も入っていません）')])));
+      el('p', { class: 'rg-out' },
+        text && marker ? el('span', { class: 'rg-num', title: '原稿にあった文献番号です。そのまま残します' }, marker) : null,
+        ...(text ? parts : [el('span', { class: 'rg-empty' }, '（まだ何も入っていません）')])));
 
     noticeWrap.replaceChildren(...notices.map(n => {
       const card = el('div', { class: `rg-note rg-note-${n.level}` },
@@ -225,7 +230,7 @@ export function openReferenceGuide({ line, lineNo, references, onApply }) {
             if (!type) { flash(typeSel); return; }
             const { text } = buildReference(references, type.id, values);
             if (!text) { flash(typeSel); return; }
-            onApply?.(text);
+            onApply?.(marker + text);
             close();
           },
         }, 'この文字列にする'))));
