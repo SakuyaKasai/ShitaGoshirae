@@ -383,12 +383,22 @@ html, body {
 
 /* ゲラ上の「ガイド編集」ボタンと、編集済みの行 */
 .gl { position: relative; }
-/* ゲラ上の「ガイド編集」ボタン */
+/* 本文とボタンを収める3列目のセル。
+ * ボタンを .gl の直下に置くと、grid の暗黙の行（1列目 3.2rem）へ落ちて
+ * はみ出し、次の行のものに見える。必ずこの箱の中に入れること。 */
+.gl-main {
+  display: flex; align-items: baseline; gap: .75rem;
+  min-width: 0;                 /* 長い行がボタンを押し出さないように */
+}
+.gl-main > .gl-t { flex: 1 1 auto; min-width: 0; }
+
+/* ゲラ上の「参考文献の書式整形」ボタン */
 .gl-guide {
-  flex: 0 0 auto; margin-left: 8px; padding: 2px 10px;
-  font-size: .74rem; white-space: nowrap; cursor: pointer;
+  flex: 0 0 auto; padding: 2px 10px;
+  font-size: .72rem; white-space: nowrap; cursor: pointer;
   border: 1px solid #9db8cc; border-radius: 3px;
   background: #eaf1f6; color: #2f5b7a; font-weight: 600;
+  align-self: center;
 }
 .gl-guide:hover { background: #d8e6f0; border-color: #7ba7c9; }
 .gl-guide:focus { outline: 2px solid #7ba7c9; outline-offset: 1px; }
@@ -402,14 +412,19 @@ html, body {
   padding: 0 4px; border: 1px solid #b6d4b6; border-radius: 2px;
 }
 
-@media (max-width: 600px) {
-  .gl-guide { opacity: 1; }   /* スマホには hover が無い */
+/* 狭い画面では本文の下へ回す（横に並べると本文が潰れるため） */
+@media (max-width: 700px) {
+  .gl-main { flex-wrap: wrap; gap: .35rem; }
+  .gl-main > .gl-t { flex: 1 1 100%; }
 }
 
 /* ============================================================
  * 参考文献のガイド編集（src/reference-guide.js）
  *   既存のクラス名とぶつからないよう、すべて rg- で始めています。
  * ========================================================== */
+
+/* プレビュー先頭の文献番号。整形の対象ではなく、原稿から運んでいるもの */
+.rg-num { color: #6b7a80; margin-right: .35em; }
 
 .rg-back {
   position: fixed; inset: 0; z-index: 100;

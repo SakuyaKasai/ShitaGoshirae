@@ -23,8 +23,18 @@ const ok = (c, m) => { c ? (pass++, console.log('  ✅', m)) : (fail++, console.
 
 const CHROME = process.env.CHROME_BIN
   ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const browser = await chromium.launch(
-  fs.existsSync(CHROME) ? { executablePath: CHROME } : {});
+// ブラウザを用意できないのは「環境の都合」、テストが落ちるのは「不具合」。
+// この2つを混ぜると、本物の回帰が「環境依存です」で見逃される（実際に紛らわしかった）。
+// 起動できないときだけ 97 で抜け、run-all はそれを skip として扱う。
+let browser;
+try {
+  browser = await chromium.launch(
+    fs.existsSync(CHROME) ? { executablePath: CHROME } : {});
+} catch (e) {
+  console.log('⏭  Chromium を起動できないため、この検証は飛ばします');
+  console.log('   ' + String(e).split('\n')[0]);
+  process.exit(97);
+}
 const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
 
 const isNoise = t => /Failed to load resource|net::ERR|fonts\.(googleapis|gstatic)/.test(t);
@@ -42,9 +52,19 @@ await page.waitForSelector('.form', { timeout: 20000 });
 await page.click('.actions .btn-primary');
 await page.waitForSelector('.galley-body');
 
-console.log('\n【1】ガイド編集の入口');
+console.log('\n【1】入口');
 const guideCount = await page.locator('.gl-guide').count();
-ok(guideCount > 0, `文献の行に「ガイド編集」が出ている（${guideCount}件）`);
+ok(guideCount > 0, `文献の行にボタンが出ている（${guideCount}件）`);
+const label = await page.locator('.gl-guide').first().innerText();
+ok(label.includes('参考文献'), `初見で分かる名前になっている: ${label}`);
+
+// ボタンは本文と同じセル（.gl-main）に入っていること。
+// .gl 直下に置くと grid の暗黙の行へ落ち、はみ出して次行のものに見える。
+ok(await page.locator('.gl-main > .gl-guide').count() === guideCount,
+   'ボタンが本文と同じセルに入っている（はみ出しの回帰）');
+const overflow = await page.$$eval('.gl-guide', els =>
+  els.filter(e => e.scrollWidth > e.clientWidth + 1).length);
+ok(overflow === 0, `ボタンの文字がはみ出していない（はみ出し ${overflow}件）`);
 
 const row = page.locator('.gl').filter({ has: page.locator('.gl-guide') }).first();
 const rowText = (await row.locator('.gl-t').innerText()).replace(/\s+/g, ' ').trim();
@@ -69,6 +89,8 @@ ok(restCore.length > 0 && [...restCore].every(ch => origCore.includes(ch)),
    `「残り」が原文由来の文字だけでできている: ${rest.slice(0, 44)}`);
 ok(!rest.includes('School of Ergonomics') && !rest.includes('人間工学大学'),
    '「残り」に所属の行が混ざっていない（bodyStart ずれの回帰）');
+ok(!/^\s*[0-9０-９]+\s*[)）.．]/.test(rest),
+   `「残り」に行頭の文献番号が残っていない: ${rest.slice(0, 30)}`);
 
 console.log('\n【3】組み立て');
 await page.selectOption('.rg-type', 'journal');
@@ -99,6 +121,11 @@ await page.locator('.rg-foot .btn-primary').click();
 await page.waitForSelector('.rg', { state: 'detached', timeout: 5000 });
 const edited = (await row.locator('.gl-t').innerText()).replace(/\s+/g, ' ').trim();
 ok(edited !== rowText, `ゲラの行が差し替わった: ${edited.slice(0, 44)}`);
+
+// 文献番号は整形の対象ではなく「運ぶ」もの。消えると、整形した行だけ番号が抜ける。
+const num = /^\s*([0-9０-９]+\s*[)）.．])/.exec(rowText);
+ok(num ? edited.startsWith(num[1]) : true,
+   `文献番号が残っている: ${num ? num[1] : '(原文に番号なし)'} → ${edited.slice(0, 24)}`);
 ok(await row.locator('.gl-t.is-edited').count() === 1, '編集済みの印が付いている');
 
 console.log('\n【5】工程を行き来しても編集が残るか');

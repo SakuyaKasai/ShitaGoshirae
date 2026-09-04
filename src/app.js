@@ -426,15 +426,20 @@ return el('div', {
       el('span', { class: 'gl-n' }, String(i + 1)),
       el('span', { class: 'gl-mark', title: issues.map(x => x.id).join(' ') },
         issues.length ? issues.map(x => x.id).join(' ') : ''),
-      el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },
-        h ? el('span', { class: 'gl-lv' }, `H${h.level}`) : null,
-        shown || el('span', { class: 'gl-empty' }, '（空行）')),
-      isRef ? el('button', {
-        class: 'gl-guide', type: 'button', title: '規定の書式に整えます',
-        // 原文そのものを渡す。ここで添字を渡すと、どの配列の添字なのかが
-        // 呼ばれた先で分からなくなる（bodyLines と state.lines を取り違えた実績あり）。
-        onclick: e => { e.stopPropagation(); openGuideFor(i, i - refStart, text); },
-      }, 'ガイド編集') : null
+      // 本文とボタンは同じセルに入れる。`.gl` は3列の grid なので、
+      // ボタンを直下の子にすると暗黙の行の1列目（3.2rem）に落ちて溢れ、
+      // しかも「次の行のボタン」に見える。実際そうなっていた。
+      el('div', { class: 'gl-main' },
+        el('span', { class: `gl-t${state.referenceEdits.has(i) ? ' is-edited' : ''}` },
+          h ? el('span', { class: 'gl-lv' }, `H${h.level}`) : null,
+          shown || el('span', { class: 'gl-empty' }, '（空行）')),
+        isRef ? el('button', {
+          class: 'gl-guide', type: 'button',
+          title: '学会規定（SIST02）の書式に沿って、この文献を組み直します',
+          // 原文そのものを渡す。ここで添字を渡すと、どの配列の添字なのかが
+          // 呼ばれた先で分からなくなる（bodyLines と state.lines を取り違えた実績あり）。
+          onclick: e => { e.stopPropagation(); openGuideFor(i, i - refStart, text); },
+        }, '参考文献の書式整形') : null)
     ); 
   });
 

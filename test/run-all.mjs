@@ -90,8 +90,8 @@ const suites = [
   //
   // ブラウザ（環境が無ければ飛ばす）
   //   開くのは .testwork に焼いた1枚。リポジトリの index.html ではない（上の説明を参照）。
-  { file: 'ui_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true, browser: true },
-  { file: 'reference-guide_test.mjs', cwd: root, needs: 'fixture-full.docx', optional: true, browser: true },
+  { file: 'ui_test.mjs', cwd: root, needs: 'fixture-full.docx', browser: true },
+  { file: 'reference-guide_test.mjs', cwd: root, needs: 'fixture-full.docx', browser: true },
   // ファイルを読まないもの
   { file: 'reference-types_test.mjs', cwd: root },
 ];
@@ -118,12 +118,20 @@ for (const s of suites) {
     if (m) { total += Number(m[1]); failed += Number(m[2]); }
     console.log(out.trim().split('\n').slice(-1)[0]);
   } catch (err) {
+    // 終了コード 97 は「環境が足りなくて走れなかった」の合図（→ ブラウザテスト冒頭）。
+    // それ以外の失敗は、すべて不具合として数える。
+    // かつて optional: true で全部を「環境依存」と言っていたが、
+    // **本物の回帰まで同じ文言で流してしまう**ため、区別する形に改めた。
+    if (err.status === 97) {
+      console.log(String(err.stdout ?? '').trim() || '   環境が足りないため飛ばしました');
+      skipped++;
+      continue;
+    }
     const out = String(err.stdout ?? '') + String(err.stderr ?? '');
     const m = /(\d+) passed, (\d+) failed/.exec(out);
     if (m) { total += Number(m[1]); failed += Number(m[2]); }
     else failed++;
     console.log(out.split('\n').filter(l => l.includes('❌')).join('\n') || out.slice(-500));
-    if (s.optional) { console.log(`   （${s.file} は環境依存のため、失敗しても止めません）`); }
   }
 }
 
