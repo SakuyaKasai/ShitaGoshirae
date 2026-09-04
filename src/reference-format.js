@@ -128,6 +128,27 @@ function pushCollision(notices, field, textSoFar, delim, nextText) {
  *   先に出版年を取ると DOI の中の数字やページ範囲を壊すため。
  */
 
+/**
+ * 行頭の文献番号（`1) ` `2．` `3.` など）。
+ *
+ * **`compose.js` が剥がすのと同じ形でなければならない。** 出力時、文献段落は
+ * テンプレの `numId=17` で自動採番されるため、compose は手打ちの番号を剥がす。
+ * ここで別の形（`[1]` など）まで番号扱いすると、compose が剥がせずに
+ * 「自動番号 + 手打ち番号」の二重になる。広げるときは両方そろえること。
+ */
+export const REFERENCE_MARKER_RE = /^\s*[0-9０-９]+\s*[)）.．]\s*/;
+
+/**
+ * 行頭の文献番号を切り離す。
+ * @returns {{ marker: string, body: string }} marker は原文のまま（付け直しに使う）
+ */
+export function splitMarker(line) {
+  const s = String(line ?? '');
+  const m = REFERENCE_MARKER_RE.exec(s);
+  return m ? { marker: m[0].trimEnd() + ' ', body: s.slice(m[0].length) }
+           : { marker: '', body: s };
+}
+
 /** https://doi.org/10.xxxx/... または 素の 10.xxxx/... */
 const RE_DOI = /(?:https?:\/\/(?:dx\.)?doi\.org\/)?(10\.\d{4,9}\/[^\s，,、。．]+)/i;
 /** doi.org 以外の URL */
@@ -285,11 +306,17 @@ export function guessType(line) {
  */
 export function prepareGuide(line, references, forcedTypeId) {
   const original = String(line ?? '').trim();
+
+  // 行頭の文献番号は「運ぶ」もので、整形の対象ではない。
+  // ここで外しておかないと「残り」に居座り、利用者が毎回よけることになる。
+  // 組み立て後に marker を付け直す（→ reference-guide.js）。
+  const { marker, body } = splitMarker(original);
+
   const guess = forcedTypeId
     ? { id: forcedTypeId, confidence: 'high', reason: '種別を選択しました' }
-    : guessType(original);
+    : guessType(body);
 
-  const { fields, rest, found } = extractFields(original);
+  const { fields, rest, found } = extractFields(body);
 
   // 選ばれた型に無いフィールドは持ち越さない
   const type = references?.types?.find(t => t.id === guess.id);
@@ -305,7 +332,8 @@ export function prepareGuide(line, references, forcedTypeId) {
     fields: type ? kept : fields,
     rest,
     found: type ? found.filter(k => type.fields.some(f => f.key === k)) : found,
-    original,
+    marker,     // 行頭の文献番号（`2) `）。無ければ空文字
+    original,   // marker を含む原文
   };
 }
 
