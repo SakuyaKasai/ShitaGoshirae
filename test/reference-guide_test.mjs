@@ -23,8 +23,18 @@ const ok = (c, m) => { c ? (pass++, console.log('  ✅', m)) : (fail++, console.
 
 const CHROME = process.env.CHROME_BIN
   ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const browser = await chromium.launch(
-  fs.existsSync(CHROME) ? { executablePath: CHROME } : {});
+// ブラウザを用意できないのは「環境の都合」、テストが落ちるのは「不具合」。
+// この2つを混ぜると、本物の回帰が「環境依存です」で見逃される（実際に紛らわしかった）。
+// 起動できないときだけ 97 で抜け、run-all はそれを skip として扱う。
+let browser;
+try {
+  browser = await chromium.launch(
+    fs.existsSync(CHROME) ? { executablePath: CHROME } : {});
+} catch (e) {
+  console.log('⏭  Chromium を起動できないため、この検証は飛ばします');
+  console.log('   ' + String(e).split('\n')[0]);
+  process.exit(97);
+}
 const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
 
 const isNoise = t => /Failed to load resource|net::ERR|fonts\.(googleapis|gstatic)/.test(t);
